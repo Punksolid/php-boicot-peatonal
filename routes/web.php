@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\SubscribtionsController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/subscription', [SubscribtionsController::class, 'store'])->name('subscription.store');
+Route::get('/subscription/verify', [SubscribtionsController::class, 'verify'])->name('subscription.verify');
+Route::get('/subscription/show', [SubscribtionsController::class, 'show'])->name('subscription.show');
+Route::resource('prospects', ProspectController::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -29,7 +35,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/subscriptions', [SubscribtionsController::class, 'store'] )->name('subscription.store');
-Route::get('/subscriptions/verify', [SubscribtionsController::class, 'verify'] )->name('subscription.verify');
-Route::get('/subscriptions/thank_you', [SubscribtionsController::class, 'show'] )->name('subscription.show');
 require __DIR__.'/auth.php';

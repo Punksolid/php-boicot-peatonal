@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="thank you">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Gracias por suscribirte') }}

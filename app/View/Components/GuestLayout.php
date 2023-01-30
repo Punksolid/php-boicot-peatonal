@@ -7,11 +7,18 @@ use Illuminate\View\View;
 
 class GuestLayout extends Component
 {
+    public string $title;
+
+    public function __construct($title)
+    {
+        $this->title = $title;
+    }
+
     /**
      * Get the view / contents that represents the component.
      */
     public function render(): View
     {
-        return view('layouts.guest');
+        return view('layouts.guest')->with('title', $this->title);
     }
 }
