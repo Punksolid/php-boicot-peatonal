@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+//        first tuesday of every month at 8pm
+        $schedule->command('prospects:send-featured')->monthlyOn(2, '20:00');
     }
 
     /**

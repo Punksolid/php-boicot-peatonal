@@ -22,5 +22,9 @@ class Prospect extends Model
         return random_int(1, 99);
     }
 
-
+    public function markFeatured()
+    {
+        $this->featured_at = now();
+        $this->save();
+    }
 }

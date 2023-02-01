@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\SubscribtionsController;
+use App\Models\Prospect;
+use App\Models\Subscription;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +38,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// @TODO: Delete the following line after deployment, these are only for testing purposes
+// @TODO: Add a proper dashboard
+Route::get('/kpi', function () {
+
+    $number_of_subscribers = Subscription::whereNotNull('verified_at')->count();
+    $number_of_prospects = Prospect::count();
+    return new JsonResponse([
+        'subscribers' => $number_of_subscribers,
+        'prospects' => $number_of_prospects,
+    ], 200);
+
+})->name('featured');
 require __DIR__.'/auth.php';

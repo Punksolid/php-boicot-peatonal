@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,22 +9,24 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EmailVerifySubscriber extends Mailable
+class FeaturedProspectOfTheMonth extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public string $uuid;
-    public string $verification_url;
+    public $prospect;
+    public $google_maps_link;
+    public $facebook_link;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Subscription $subscription)
+    public function __construct($prospect)
     {
-        $this->uuid = $subscription->id;
-        $this->verification_url = route('subscription.verify', ['token' => $this->uuid] );
+        $this->prospect = $prospect;
+        $this->google_maps_link = $prospect->google_maps_url;
+        $this->facebook_link = $prospect->facebook_url;
     }
 
     /**
@@ -36,7 +37,7 @@ class EmailVerifySubscriber extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Email Verify Subscriber',
+            subject: 'Una invitación a hacer una diferencia',
         );
     }
 
@@ -46,10 +47,9 @@ class EmailVerifySubscriber extends Mailable
      * @return \Illuminate\Mail\Mailables\Content
      */
     public function content()
-
     {
         return new Content(
-            markdown: 'mail.email-verify-subscriber',
+            markdown: 'mail.featured-prospect-of-the-month',
         );
     }
 
