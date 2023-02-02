@@ -2,13 +2,18 @@
     <div class="bg-white">
         <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 class="text-xl font-bold text-gray-900">Prospectos</h2>
+            {{-- add button link Send Prospect to top right corner--}}
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto">
+                <a href="{{ route('prospects.create') }}">Enviar Prospecto</a>
+            </button>
 
             <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 @foreach($prospects as $prospect)
                     <div>
                         <div class="relative">
                             <div class="relative h-72 w-full overflow-hidden rounded-lg">
-                                <img src="https://pbs.twimg.com/media/FmEQ8HuWQAAxEsc?format=jpg&name=large" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center">
+                                <img src="{{ $prospect->image_url }}" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center">
                             </div>
                             <div class="relative mt-4">
                                 <h3 class="text-sm font-medium text-gray-900">{{ $prospect->city }}, {{ $prospect->country }}</h3>

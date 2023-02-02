@@ -87,11 +87,11 @@
                         <h2 class="sr-only">Images</h2>
 
                         <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-                            <img src="{{ $prospect->image_url }}" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
+                            <img src="{{ asset($prospect->image_url )}}" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
 
-                            <img src="{{ $prospect->image_url }}" alt="Side profile of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
+                            <img src="{{ asset($prospect->image_url) }}" alt="Side profile of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
 
-                            <img src="{{ $prospect->image_url }}" alt="Front of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
+                            <img src="{{ asset($prospect->image_url) }}" alt="Front of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
                         </div>
                     </div>
 

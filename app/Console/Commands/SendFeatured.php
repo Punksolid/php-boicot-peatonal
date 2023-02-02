@@ -15,7 +15,7 @@ class SendFeatured extends Command
      *
      * @var string
      */
-    protected $signature = 'prospects:send-featured';
+    protected $signature = 'prospects:send-featured ---';
 
     /**
      * The console command description.

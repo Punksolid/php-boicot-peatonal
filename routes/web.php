@@ -26,13 +26,15 @@ Route::get('/', function () {
 Route::post('/subscription', [SubscribtionsController::class, 'store'])->name('subscription.store');
 Route::get('/subscription/verify', [SubscribtionsController::class, 'verify'])->name('subscription.verify');
 Route::get('/subscription/show', [SubscribtionsController::class, 'show'])->name('subscription.show');
-Route::resource('prospects', ProspectController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    Route::resource('prospects', ProspectController::class);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -40,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
 // @TODO: Delete the following line after deployment, these are only for testing purposes
 // @TODO: Add a proper dashboard
-Route::get('/kpi', function () {
+Route::get('/🔥', function () {
 
     $number_of_subscribers = Subscription::whereNotNull('verified_at')->count();
     $number_of_prospects = Prospect::count();
@@ -50,4 +52,8 @@ Route::get('/kpi', function () {
     ], 200);
 
 })->name('featured');
+
+Route::get('login', function () {
+    return view('auth.login');
+})->name('login');
 require __DIR__.'/auth.php';

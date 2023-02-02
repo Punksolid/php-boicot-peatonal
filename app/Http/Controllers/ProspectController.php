@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProspectRequest;
 use App\Http\Requests\UpdateProspectRequest;
 use App\Models\Prospect;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProspectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -21,29 +27,34 @@ class ProspectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-
+        return view('prospects.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProspectRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreProspectRequest $request
+     * @return RedirectResponse|Response
      */
     public function store(StoreProspectRequest $request)
     {
-        //
+        $prospect = new Prospect($request->except(['cover-photo']));
+        $prospect->image_url = $request->file('cover-photo')->store('/prospects');
+        $prospect->reporter_email = $request->user()->email;
+        $prospect->save();
+
+        return redirect()->route('prospects.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Prospect  $prospect
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Prospect $prospect
+     * @return Application|Factory|View
      */
     public function show(Prospect $prospect)
     {
@@ -53,8 +64,8 @@ class ProspectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Prospect  $prospect
-     * @return \Illuminate\Http\Response
+     * @param Prospect $prospect
+     * @return Response
      */
     public function edit(Prospect $prospect)
     {
@@ -64,9 +75,9 @@ class ProspectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProspectRequest  $request
-     * @param  \App\Models\Prospect  $prospect
-     * @return \Illuminate\Http\Response
+     * @param UpdateProspectRequest $request
+     * @param Prospect $prospect
+     * @return Response
      */
     public function update(UpdateProspectRequest $request, Prospect $prospect)
     {
@@ -76,8 +87,8 @@ class ProspectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Prospect  $prospect
-     * @return \Illuminate\Http\Response
+     * @param Prospect $prospect
+     * @return Response
      */
     public function destroy(Prospect $prospect)
     {
