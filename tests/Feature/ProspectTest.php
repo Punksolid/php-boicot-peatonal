@@ -23,8 +23,6 @@ class ProspectTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
     public function test_show_form(): void
     {
@@ -38,7 +36,7 @@ class ProspectTest extends TestCase
         unset($attributes['is_active']);
         unset($attributes['reporter_email']);
         unset($attributes['image_url']);
-        foreach ($attributes as $key => $value) {
+        foreach (array_keys($attributes) as $key) {
             $call->assertSee($key);
         }
 

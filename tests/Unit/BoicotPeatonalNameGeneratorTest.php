@@ -9,8 +9,6 @@ class BoicotPeatonalNameGeneratorTest extends TestCase
 {
     /**
      * A basic unit test example.
-     *
-     * @return void
      */
     public function testNameGenerator(): void
     {

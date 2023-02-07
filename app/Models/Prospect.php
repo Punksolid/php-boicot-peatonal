@@ -27,9 +27,8 @@ class Prospect extends Model
     public function getImageUrlAttribute($value)
     {
 //        @todo: remove this line when we have a proper image storage
-        $value = str_replace('public', 'storage', $value);
-        $value = url($value);
-        return $value ?? 'https://pbs.twimg.com/media/Ffcsaj4VEAUtcjc?format=jpg&name=large';
+        $value = str_replace('public', 'storage', (string) $value);
+        return url($value);
     }
 
     /**

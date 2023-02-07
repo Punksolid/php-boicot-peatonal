@@ -7,6 +7,7 @@ use App\Models\Prospect;
 use App\Models\Subscription;
 use Illuminate\Console\Command;
 use Illuminate\Mail\Mailer;
+use Illuminate\Support\Collection;
 
 class SendFeatured extends Command
 {
@@ -15,7 +16,7 @@ class SendFeatured extends Command
      *
      * @var string
      */
-    protected $signature = 'prospects:send-featured ---';
+    protected $signature = 'prospects:send-featured {--dont-mark-as-featured}';
 
     /**
      * The console command description.
@@ -26,31 +27,33 @@ class SendFeatured extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle(Mailer $mailer)
+    public function handle(Mailer $mailer): int
     {
         $prospect = $this->selectFeatured();
+        $dontMarkAsFeatured = $this->option('dont-mark-as-featured');
 
         $mailFeatured = new FeaturedProspectOfTheMonth($prospect);
 
-        $this->getEmails()->each(function ($email) use ($mailFeatured, $mailer) {
+        foreach ($this->getEmails() as $email) {
             $mailFeatured->to($email);
             $mailFeatured->send($mailer);
-        });
+        }
 
-        $prospect->markFeatured();
+        if (!$dontMarkAsFeatured){
+            $prospect->markFeatured();
+        }
         return Command::SUCCESS;
     }
 
-    public function getEmails()
+    public function getEmails(): array
     {
-        return Subscription::whereNotNull('verified_at')->get()->pluck('email');
+        return Subscription::whereNotNull('verified_at')->select('email')->get();
     }
 
     private function selectFeatured(): Prospect
     {
+        // @TODO: Select the most voted prospect of the month, if dont-mark-as-featured is set, then select the latest one, if there is no featured prospect, then select a random one
         return Prospect::whereNull('featured_at')->inRandomOrder()->first();
     }
 }

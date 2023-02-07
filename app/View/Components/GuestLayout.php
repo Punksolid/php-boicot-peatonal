@@ -7,11 +7,8 @@ use Illuminate\View\View;
 
 class GuestLayout extends Component
 {
-    public string $title;
-
-    public function __construct($title)
+    public function __construct(public $title)
     {
-        $this->title = $title;
     }
 
     /**

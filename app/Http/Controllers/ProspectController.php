@@ -16,10 +16,8 @@ class ProspectController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('prospects.index')->with('prospects', Prospect::all());
     }
@@ -27,7 +25,7 @@ class ProspectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -36,11 +34,8 @@ class ProspectController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreProspectRequest $request
-     * @return RedirectResponse|Response
      */
-    public function store(StoreProspectRequest $request)
+    public function store(StoreProspectRequest $request): \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
     {
         $prospect = new Prospect($request->except(['cover-photo']));
         $prospect->image_url = $request->file('cover-photo')->store('public');
@@ -52,11 +47,8 @@ class ProspectController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param Prospect $prospect
-     * @return Application|Factory|View
      */
-    public function show(Prospect $prospect)
+    public function show(Prospect $prospect): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('prospects.show')->with('prospect', $prospect);
     }
