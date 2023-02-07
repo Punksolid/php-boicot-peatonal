@@ -17,7 +17,7 @@
         <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div class="space-y-6 sm:space-y-5">
                 <div>
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Agrega Prospecto de Local Invasor</h3>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Registra Lugar Invadido</h3>
                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                         Esta información será pública, así que solo agrega
                         cosas actualmente públicas.
@@ -85,7 +85,7 @@
                                     <input id="has_bumps"
                                            name="has_bumps"
                                            type="checkbox"
-                                           value="true"
+                                           value="1"
                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                            {{ old('has_bumps') ? 'checked' : '' }}
                                     >
@@ -141,71 +141,6 @@
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="country"
-                               class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">País</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <select id="country" name="country" autocomplete="country-name"
-                                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
-                                <option>Mexico</option>
-                                <option>Chile</option>
-                                <option>Peru</option>
-                                <option>Colombia</option>
-{{--                                default option checked Rusia with old method --}}
-                                <option value="mexico" {{ old('country') == 'mexico' ? 'selected' : '' }}>Mexico</option>
-                                <option value="chile" {{ old('country') == 'chile' ? 'selected' : '' }}>Chile</option>
-                                <option value="peru"{{ old('country') == 'peru' ? 'selected' : '' }}>Peru</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="address" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Dirección</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <input type="text"
-                                   name="address"
-                                   id="address"
-                                   autocomplete="address"
-                                   value="{{ old('address') }}"
-                                   class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                        </div>
-                    </div>
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="geo_location" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Coordenadas de Latitud y Longitud</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <input type="text"
-                                   name="geo_location"
-                                   id="geo_location"
-                                   autocomplete="geo_location"
-                                   value="{{ old('geo_location') }}"
-                                   class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                        </div>
-                    </div>
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="city" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Ciudad</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <input type="text"
-                                   name="city"
-                                   id="city"
-                                   autocomplete="address-level2"
-                                      value="{{ old('city') }}"
-                                   class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
-                        </div>
-                    </div>
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="state" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Estado</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <input type="text"
-                                   name="state"
-                                   id="state"
-                                   autocomplete="state"
-                                   value="{{ old('state') }}"
-                                   class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
-                        </div>
-                    </div>
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                         <label for="google_maps_link" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Link en Google Maps</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
                             <input type="url"
@@ -229,30 +164,6 @@
                         </div>
                     </div>
 
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">País</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <input type="text"
-                                   name="country"
-                                   id="country"
-                                   autocomplete="address-level1"
-                                   value="{{ old('country') }}"
-                                   class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
-                        </div>
-                    </div>
-
-                    <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="postal-code" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">ZIP /
-                            Postal code</label>
-                        <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <input type="text"
-                                   name="postal-code"
-                                   id="postal-code"
-                                   autocomplete="postal-code"
-                                   value="{{ old('postal-code') }}"
-                                   class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

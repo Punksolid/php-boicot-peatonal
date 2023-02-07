@@ -43,7 +43,7 @@ class ProspectController extends Controller
     public function store(StoreProspectRequest $request)
     {
         $prospect = new Prospect($request->except(['cover-photo']));
-        $prospect->image_url = $request->file('cover-photo')->store('/prospects');
+        $prospect->image_url = $request->file('cover-photo')->store('public');
         $prospect->reporter_email = $request->user()->email;
         $prospect->save();
 
@@ -61,37 +61,4 @@ class ProspectController extends Controller
         return view('prospects.show')->with('prospect', $prospect);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Prospect $prospect
-     * @return Response
-     */
-    public function edit(Prospect $prospect)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateProspectRequest $request
-     * @param Prospect $prospect
-     * @return Response
-     */
-    public function update(UpdateProspectRequest $request, Prospect $prospect)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Prospect $prospect
-     * @return Response
-     */
-    public function destroy(Prospect $prospect)
-    {
-        //
-    }
 }

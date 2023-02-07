@@ -29,7 +29,6 @@ class ProspectTest extends TestCase
     public function test_show_form(): void
     {
         $call = $this->get('/prospects/create');
-//        $call->dd();
         $call->assertStatus(200);
 
         /** @var Prospect $prospect */

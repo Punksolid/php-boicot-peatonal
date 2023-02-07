@@ -36,14 +36,9 @@ class StoreProspectRequest extends FormRequest
             'is_from_politician' => ['boolean'],
             'is_from_media' => ['boolean'],
             'is_from_business' => ['boolean'],
-            'address' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'state' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
-            'geo_location' => ['required', 'string', 'max:255'],
             'google_maps_link' => ['required', $url_rule, 'max:255'],
             'facebook_link' => ['required', $url_rule, 'max:255'],
-            'cover-photo' => ['required', 'image', 'max:1024'],
+            'cover-photo' => ['required', 'image', 'max:2048'],
         ];
     }
 }
