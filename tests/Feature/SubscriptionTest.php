@@ -14,7 +14,7 @@ class SubscriptionTest extends TestCase
     public function test_can_subscribe(): void
     {
         $safeEmail = $this->faker->safeEmail;
-        $response = $this->post('/subscriptions', [
+        $response = $this->post(route('subscription.store'), [
             'email' => $safeEmail,
         ]);
 
