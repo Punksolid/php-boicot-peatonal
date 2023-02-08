@@ -44,4 +44,14 @@ class Prospect extends Model
         $this->featured_at = now();
         $this->save();
     }
+
+    public function scopeFeatured($query)
+    {
+        return $query->whereNotNull('featured_at')->orderByDesc('featured_at');
+    }
+
+    public function scopeNotFeatured($query)
+    {
+        return $query->whereNull('featured_at');
+    }
 }

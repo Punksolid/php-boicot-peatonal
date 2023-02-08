@@ -40,7 +40,7 @@ class SendFeatured extends Command
             $mailFeatured->send($mailer);
         }
 
-        if (!$dontMarkAsFeatured){
+        if (!$dontMarkAsFeatured) {
             $prospect->markFeatured();
         }
         return Command::SUCCESS;
@@ -48,12 +48,20 @@ class SendFeatured extends Command
 
     public function getEmails(): array
     {
-        return Subscription::whereNotNull('verified_at')->select('email')->get();
+        return Subscription::whereNotNull('verified_at')->select('email')->get()->toArray();
+    }
+
+    private function selectNewFeaturedProspect(): Prospect
+    {
+        return Prospect::notFeatured()->first();
     }
 
     private function selectFeatured(): Prospect
     {
-        // @TODO: Select the most voted prospect of the month, if dont-mark-as-featured is set, then select the latest one, if there is no featured prospect, then select a random one
-        return Prospect::whereNull('featured_at')->inRandomOrder()->first();
+        $featured = Prospect::featured()->first();
+        if ($featured) {
+            return $featured;
+        }
+        return $this->selectNewFeaturedProspect();
     }
 }

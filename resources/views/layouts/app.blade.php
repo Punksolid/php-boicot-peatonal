@@ -22,9 +22,14 @@
 
     <!-- Page Heading -->
     @if (isset($header))
-        <header class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
+{{--        <header class="bg-white dark:bg-gray-800 shadow">--}}
+{{--            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">--}}
+{{--                {{ $header }}--}}
+{{--            </div>--}}
+{{--        </header>--}}
+        <header class="bg-white shadow-sm">
+            <div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
+                <h1 class="text-lg font-semibold leading-6 text-gray-900">{{ $header }}</h1>
             </div>
         </header>
     @endif

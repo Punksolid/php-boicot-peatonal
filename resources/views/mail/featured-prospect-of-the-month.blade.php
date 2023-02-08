@@ -1,6 +1,6 @@
 <x-mail::message>
 {{-- INSERT AN IMAGE --}}
-<img src="https://pbs.twimg.com/media/FmEQ8HuWQAAxEsc?format=jpg&name=large" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center" />
+<img src="{{ $prospect->image_url }}" alt="Fotografía de {{ $prospect->description }}" class="h-full w-full object-cover object-center" />
 
 
 
