@@ -5,6 +5,7 @@ use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\SubscribtionsController;
 use App\Models\Prospect;
 use App\Models\Subscription;
+use App\Services\GetFeaturedProspectOfTheMonth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth) {
+    $prospect = $getFeaturedProspectOfTheMonth->__invoke();
+    return view('welcome')->with(compact('prospect'));
 });
 
 Route::post('/subscription', [SubscribtionsController::class, 'store'])->name('subscription.store');
