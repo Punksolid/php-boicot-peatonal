@@ -17,7 +17,7 @@ class GetFeaturedProspectOfTheMonth
         return $this->selectNewFeaturedProspect();
     }
 
-    private function selectNewFeaturedProspect(): Prospect
+    private function selectNewFeaturedProspect(): ?Prospect
     {
         return Prospect::notFeatured()->first();
     }
