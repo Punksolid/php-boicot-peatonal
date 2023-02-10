@@ -10,6 +10,7 @@ class GetFeaturedProspectOfTheMonth
     public function __invoke(): Prospect
     {
         $featured = Prospect::featured()->first();
+
         if ($featured) {
             return $featured;
         }
