@@ -261,21 +261,24 @@
                             </dl>
                         </section>
                         <!-- Share buttons section -->
-                        <section aria-labelledby="share-heading" class="mt-10">
-                            <h2 id="share-heading" class="sr-only">Comparte esta página</h2>
+                        <div class="mt-8 border-t border-gray-200 pt-8">
 
-                            <div class="flex justify-center space-x-6">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('prospects.show', ['prospect' => $prospect->id]) }}">
-                                    <i class="fab fa-facebook fa-2x"></i>
-                                    <span class="sr-only">Share on Facebook</span>
-                                </a>
+                            <h2 id="share-heading" class="text-sm font-medium text-gray-900">Comparte esta página</h2>
+                            <section aria-labelledby="share-heading" class="mt-10">
 
-                                <a href="https://twitter.com/share?url={{ route('prospects.show', ['prospect' => $prospect->id]) }}&text=Revisa esta página de BoicotPeatonal.ORG! {{ $prospect->name }}" class="text-gray-400 hover:text-gray-500">
-                                    <i class="fab fa-twitter fa-2x"></i>
-                                    <span class="sr-only">Twitter</span>
-                                </a>
-                            </div>
-                        </section>
+                                <div class="flex justify-center space-x-6">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('prospects.show', ['prospect' => $prospect->id]) }}">
+                                        <i class="fab fa-facebook fa-2x"></i>
+                                        <span class="sr-only">Share on Facebook</span>
+                                    </a>
+
+                                    <a href="https://twitter.com/share?url={{ route('prospects.show', ['prospect' => $prospect->id]) }}&text=Revisa esta página de BoicotPeatonal.ORG! {{ $prospect->name }}" class="text-gray-400 hover:text-gray-500">
+                                        <i class="fab fa-twitter fa-2x"></i>
+                                        <span class="sr-only">Twitter</span>
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
