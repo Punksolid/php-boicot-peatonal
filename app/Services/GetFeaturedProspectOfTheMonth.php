@@ -7,7 +7,7 @@ use App\Models\Prospect;
 class GetFeaturedProspectOfTheMonth
 {
 
-    public function __invoke(): Prospect
+    public function __invoke(): ?Prospect
     {
         $featured = Prospect::featured()->first();
 
