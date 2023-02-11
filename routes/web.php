@@ -5,6 +5,7 @@ use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\SubscribtionsController;
 use App\Models\Prospect;
 use App\Models\Subscription;
+use App\Models\User;
 use App\Services\GetFeaturedProspectOfTheMonth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,7 @@ Route::get('/🔥', function () {
     return new JsonResponse([
         'subscribers' => $number_of_subscribers,
         'prospects' => $number_of_prospects,
+        'users' => User::count(),
     ], 200);
 
 })->name('featured');
