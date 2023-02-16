@@ -23,24 +23,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth) {
     $prospect = $getFeaturedProspectOfTheMonth->__invoke();
-    return view('welcome')->with(compact('prospect'));
+    return view('welcome')->with(['prospect' => $prospect]);
 });
 
-Route::post('/subscription', [SubscribtionsController::class, 'store'])->name('subscription.store');
-Route::get('/subscription/verify', [SubscribtionsController::class, 'verify'])->name('subscription.verify');
-Route::get('/subscription/show', [SubscribtionsController::class, 'show'])->name('subscription.show');
+Route::post('/subscription', (new SubscribtionsController())->store(...))->name('subscription.store');
+Route::get('/subscription/verify', (new SubscribtionsController())->verify(...))->name('subscription.verify');
+Route::get('/subscription/show', (new SubscribtionsController())->show(...))->name('subscription.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', fn() => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
     Route::resource('prospects', ProspectController::class)->middleware('verified');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', (new ProfileController())->edit(...))->name('profile.edit');
+    Route::patch('/profile', (new ProfileController())->update(...))->name('profile.update');
+    Route::delete('/profile', (new ProfileController())->destroy(...))->name('profile.destroy');
 });
 
 // @TODO: Delete the following line after deployment, these are only for testing purposes
@@ -57,7 +55,5 @@ Route::get('/🔥', function () {
 
 })->name('featured');
 
-Route::get('login', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('login', fn() => view('auth.login'))->name('login');
 require __DIR__.'/auth.php';

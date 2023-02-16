@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', fn(Request $request) => $request->user());
 // @TODO Add only for authenticated users
-Route::post('/files/temporary', [TemporaryFilesController::class, 'store'])
+Route::post('/files/temporary', (new TemporaryFilesController())->store(...))
     ->name('temporary-files.store');
 
-Route::delete('/files/temporary', [TemporaryFilesController::class, 'destroy'])
+Route::delete('/files/temporary', (new TemporaryFilesController())->destroy(...))
     ->name('temporary-files.destroy');
