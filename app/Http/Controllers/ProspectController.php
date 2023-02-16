@@ -11,6 +11,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProspectController extends Controller
 {
@@ -24,21 +26,24 @@ class ProspectController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view('prospects.create');
+        $uuid = Str::uuid();
+        return view('prospects.create')->with('uuid', $uuid);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProspectRequest $request): \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+    public function store(StoreProspectRequest $request): RedirectResponse|Response
     {
         $prospect = new Prospect($request->except(['cover-photo']));
-        $prospect->image_url = $request->file('cover-photo')->store('public');
+        $files = Storage::disk('temporary')->files($request->get('uuid'));
+        foreach ($files as $file) {
+            $prospect->addMediaFromDisk($file, 'temporary')->toMediaCollection();
+        }
+
         $prospect->reporter_email = $request->user()->email;
         $prospect->save();
 

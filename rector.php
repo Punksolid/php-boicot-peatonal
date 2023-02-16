@@ -22,6 +22,8 @@ return static function (RectorConfig $rectorConfig): void {
 
     // register a single rule
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+    $rectorConfig->rule(ReturnTypeFromStrictScalarReturnExprRector::class);
+
 
     // define sets of rules
         $rectorConfig->sets([

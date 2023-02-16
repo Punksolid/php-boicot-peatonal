@@ -1,4 +1,4 @@
-<x-guest-layout title="Prospecto">
+<x-app-layout title="Prospecto">
     <div class="bg-white">
         <div class="pt-6 pb-16 sm:pb-24">
             <nav aria-label="Breadcrumb" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -87,11 +87,15 @@
                         <h2 class="sr-only">Images</h2>
 
                         <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-                            <img src="{{ asset($prospect->image_url )}}" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
+                            <img src="{{ $prospect->getFirstMediaUrl()  }}" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
 
-                            <img src="{{ asset($prospect->image_url) }}" alt="Side profile of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
+                            @if(isset($prospect->getMedia()[1]))
+                                <img src="{{ $prospect->getMedia()[1]->getUrl() }}" alt="Imagen de invasión de banqueta" class="hidden lg:block rounded-lg">
+                            @endif
+                            @if(isset($prospect->getMedia()[2]))
+                                <img src="{{ $prospect->getMedia()[2]->getUrl() }}" alt="Imagen de invasión de banqueta" class="hidden lg:block rounded-lg">
+                            @endif
 
-                            <img src="{{ asset($prospect->image_url) }}" alt="Front of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
                         </div>
                     </div>
 
@@ -285,4 +289,4 @@
         </div>
     </div>
 
-</x-guest-layout>
+</x-app-layout>

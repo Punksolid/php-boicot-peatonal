@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Mail\FeaturedProspectOfTheMonth;
 use App\Models\Prospect;
 use App\Models\Subscription;
+use App\Services\GetFeaturedProspectOfTheMonth;
 use Illuminate\Console\Command;
 use Illuminate\Mail\Mailer;
 use Illuminate\Support\Collection;
@@ -24,6 +25,11 @@ class SendFeatured extends Command
      * @var string
      */
     protected $description = 'It will send the Featured Prospect of the Month';
+
+    public function __construct(private readonly GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth)
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
@@ -51,17 +57,9 @@ class SendFeatured extends Command
         return Subscription::whereNotNull('verified_at')->select('email')->get()->toArray();
     }
 
-    private function selectNewFeaturedProspect(): Prospect
-    {
-        return Prospect::notFeatured()->first();
-    }
-
     private function selectFeatured(): Prospect
     {
-        $featured = Prospect::featured()->first();
-        if ($featured) {
-            return $featured;
-        }
-        return $this->selectNewFeaturedProspect();
+        return $this->getFeaturedProspectOfTheMonth->__invoke();
+
     }
 }

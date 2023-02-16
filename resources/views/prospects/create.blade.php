@@ -1,4 +1,5 @@
 <x-app-layout>
+
     @if($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">Error!</strong>
@@ -10,8 +11,11 @@
             </ul>
         </div>
     @endif
-    <form enctype="multipart/form-data" method="POST" action="{{ route('prospects.store') }}"
-        class="space-y-8 divide-y divide-gray-200" >
+    <form enctype="multipart/form-data"
+          method="POST"
+          action="{{ route('prospects.store', 'uuid='. $uuid) }}"
+          id="dropzone-form"
+          class="dropzone space-y-8 divide-y divide-gray-200">
         @csrf
 
         <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
@@ -56,15 +60,22 @@
                         <label for="cover-photo" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Foto
                             de Portada</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
+
                             <div
                                 class="flex max-w-lg justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                <div name="file" id="dropzone" class=accent-blue-600"/>
+                                <DIV class="dz-message needsclick">
+                                    Drop files here or click to upload.<BR>
 
-                                <input
-                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    id="file_input"
-                                    type="file"
-                                    name="cover-photo"
-                                >
+                                </DIV>
+
+                                {{--                                <input--}}
+                                {{--                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"--}}
+                                {{--                                    id="file_input"--}}
+                                {{--                                    type="file"--}}
+                                {{--                                    name="cover-photo"--}}
+                                {{--                                >--}}
+
                             </div>
                         </div>
                     </div>
@@ -87,12 +98,14 @@
                                            type="checkbox"
                                            value="1"
                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                           {{ old('has_bumps') ? 'checked' : '' }}
+                                        {{ old('has_bumps') ? 'checked' : '' }}
                                     >
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="has_bumps" class="font-medium text-gray-700">Topes de Goma, barras de metal o cemento</label>
-                                    <p class="text-gray-500">Si el local tiene topes de goma o cemento para detener las llantas de los autos.</p>
+                                    <label for="has_bumps" class="font-medium text-gray-700">Topes de Goma, barras de
+                                        metal o cemento</label>
+                                    <p class="text-gray-500">Si el local tiene topes de goma o cemento para detener las
+                                        llantas de los autos.</p>
                                 </div>
                             </div>
                             <div class="relative flex items-start">
@@ -102,11 +115,13 @@
                                            type="checkbox"
                                            value="1"
                                            {{ old('is_from_politician') ? 'checked' : '' }}
-                                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="is_from_politician" class="font-medium text-gray-700">Es propiedad de un politico o funcionario público.</label>
-                                    <p class="text-gray-500">Si el local es propiedad de un funcionario público, si hay duda entonces no.</p>
+                                    <label for="is_from_politician" class="font-medium text-gray-700">Es propiedad de un
+                                        politico o funcionario público.</label>
+                                    <p class="text-gray-500">Si el local es propiedad de un funcionario público, si hay
+                                        duda entonces no.</p>
                                 </div>
                             </div>
                             <div class="relative flex items-start">
@@ -114,12 +129,13 @@
                                     <input id="is_from_business"
                                            name="is_from_business"
                                            {{ old('is_from_business') ? 'checked' : '' }}
-                                           type="checkbox"
+                                               type="checkbox"
                                            value="1"
                                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="is_from_business" class="font-medium text-gray-700">El local aparenta tener fines de lucro.</label>
+                                    <label for="is_from_business" class="font-medium text-gray-700">El local aparenta
+                                        tener fines de lucro.</label>
                                     <p class="text-gray-500">Si no es una casa, terreno abandonado o alguna ONG.</p>
                                 </div>
                             </div>
@@ -130,18 +146,21 @@
                                            type="checkbox"
                                            value="1"
                                            {{ old('is_from_media') ? 'checked' : '' }}
-                                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                               class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="is_from_media" class="font-medium text-gray-700">El local está asignado a un medio de comunicación?.</label>
-                                    <p class="text-gray-500">Si en el local está ubicado algún medio de comunicación.</p>
+                                    <label for="is_from_media" class="font-medium text-gray-700">El local está asignado
+                                        a un medio de comunicación?.</label>
+                                    <p class="text-gray-500">Si en el local está ubicado algún medio de
+                                        comunicación.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="google_maps_link" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Link en Google Maps</label>
+                        <label for="google_maps_link" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Link
+                            en Google Maps</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
                             <input type="url"
                                    name="google_maps_link"
@@ -153,7 +172,8 @@
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="facebook_link" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Link en Facebook</label>
+                        <label for="facebook_link" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Link
+                            en Facebook</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
                             <input type="url"
                                    name="facebook_link"
@@ -179,6 +199,22 @@
                 </button>
             </div>
         </div>
+
+        </div>
     </form>
 
+        <script>
+            let dropzone = new Dropzone("#dropzone", {
+                url: "{{ route('temporary-files.store', 'uuid='.$uuid) }}",
+                maxFiles: 3,
+                maxFilesize: 6,
+                acceptedFiles: 'image/*',
+                addRemoveLinks: true,
+                uploadMultiple: true,
+            });
+
+            dropzone.on('removedfile', function (file) {
+                axios.delete('{{ route('temporary-files.destroy', 'uuid='.$uuid) }}/' + file.name);
+            });
+        </script>
 </x-app-layout>

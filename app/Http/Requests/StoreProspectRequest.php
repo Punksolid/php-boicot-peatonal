@@ -36,7 +36,7 @@ class StoreProspectRequest extends FormRequest
             'is_from_business' => ['boolean'],
             'google_maps_link' => ['required', $url_rule, 'max:255'],
             'facebook_link' => ['required', $url_rule, 'max:255'],
-            'cover-photo' => ['required', 'image', 'max:2048'],
+//            'cover-photo' => ['required', 'image', 'max:2048'],
         ];
     }
 }

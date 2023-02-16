@@ -116,25 +116,24 @@ plugins: [
                     </div>
                     <div class="pt-5 pb-6">
                         <div class="space-y-1 px-2">
-                            <a href="#"
-                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Product</a>
+{{--                            <a href="#"--}}
+{{--                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Product</a>--}}
 
-                            <a href="#"
-                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Features</a>
-
-                            <a href="#"
-                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Marketplace</a>
-
-                            <a href="#"
-                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Company</a>
+{{--                            <a href="#"--}}
+{{--                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Features</a>--}}
+{{----}}
+{{--                            <a href="#"--}}
+{{--                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Marketplace</a>--}}
+{{----}}
+{{--                            <a href="#"--}}
+{{--                               class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50">Company</a>--}}
                         </div>
                         <div class="mt-6 px-5">
                             <a href="{{ route('register') }}"
-                               class="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700">Registrate
-                                free trial</a>
+                               class="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700">Registrate</a>
                         </div>
                         <div class="mt-6 px-5">
-                            <p class="text-center text-base font-medium text-gray-500">Existing customer? <a href="{{ route('login') }}"
+                            <p class="text-center text-base font-medium text-gray-500">Usuario existente? <a href="{{ route('login') }}"
                                                                                                              class="text-gray-900 hover:underline">Login</a>
                             </p>
                         </div>
@@ -159,12 +158,15 @@ plugins: [
                                     de otro tipo con un individuo o una empresa considerados, por los participantes en
                                     el boicot, como autores de algo moralmente reprobable.</p>
                                 <div class="mt-10 sm:mt-12">
-                                    <form action="{{ route('subscription.store') }}"  method="POST" class="sm:mx-auto sm:max-w-xl lg:mx-0">
+                                    <form action="{{ route('subscription.store') }}"
+                                          method="POST"
+                                          class="sm:mx-auto sm:max-w-xl lg:mx-0">
                                         @csrf
                                         <div class="sm:flex">
                                             <div class="min-w-0 flex-1">
                                                 <label for="email" class="sr-only">Email address</label>
-                                                <input  id="email" type="email" name="email" placeholder="Enter your email"
+                                                <input id="email" type="email" name="email"
+                                                       placeholder="Enter your email"
                                                        class="block w-full rounded-md border-0 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900">
                                             </div>
                                             <div class="mt-3 sm:mt-0 sm:ml-3">
@@ -175,8 +177,8 @@ plugins: [
                                             </div>
                                         </div>
                                         <p class="mt-3 text-sm text-gray-300 sm:mt-4">Comienza a ser parte de la <a
-                                                href="https://twitter.com/i/communities/1586057270831480832"
-                                                class="font-medium text-white">comunidad</a>.</p>
+                                            href="https://twitter.com/i/communities/1586057270831480832"
+                                            class="font-medium text-white">comunidad</a>.</p>
                                     </form>
                                 </div>
                             </div>
@@ -337,7 +339,6 @@ plugins: [
                 </div>
             </div>
             @endif
-
         </main>
         <footer class="bg-gray-50" aria-labelledby="footer-heading">
             <h2 id="footer-heading" class="sr-only">Footer</h2>

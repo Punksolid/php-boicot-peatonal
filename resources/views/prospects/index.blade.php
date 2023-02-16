@@ -17,7 +17,7 @@
                 <div>
                     <div class="relative">
                         <div class="relative h-72 w-full overflow-hidden rounded-lg">
-                            <img src="{{ $prospect->image_url }}" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center">
+                            <img src="{{ $prospect->getFirstMediaUrl() }}" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." class="h-full w-full object-cover object-center">
                         </div>
                         <div class="relative mt-4">
                             <h3 class="text-sm font-medium text-gray-900">{{ $prospect->name }}</h3>
