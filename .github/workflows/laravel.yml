@@ -39,9 +39,18 @@ jobs:
       run: vendor/bin/pest
     - name: Execute larastan
       run: vendor/bin/phpstan analyse --memory-limit=2G
+
+  ploi-deploy:
+    name: 'Ploi Deploy'
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v2
+
       # Trigger Ploi deploy webhook
-    - name: Deploy
-      uses: Glennmen/ploi-deploy-action@v1.2.0
-      with:
-        webhook_url: ${{ secrets.WEBHOOK_URL }}
-        api_token: ${{ secrets.API_TOKEN }}
+      - name: Deploy
+        uses: Glennmen/ploi-deploy-action@v1.2.0
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
