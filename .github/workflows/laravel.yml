@@ -44,3 +44,5 @@ jobs:
       uses: Glennmen/ploi-deploy-action@v1.2.0
       with:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
+        branch: main
+        api_token: ${{ secrets.API_TOKEN }}
