@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout xmlns="http://www.w3.org/1999/html">
 
     @if($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -63,7 +63,7 @@
 
                             <div
                                 class="flex max-w-lg justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-                                <div name="file" id="dropzone" class=accent-blue-600"/>
+                                <div id="dropzone" class=accent-blue-600"/>
                                 <DIV class="dz-message needsclick">
                                     Drop files here or click to upload.<BR>
 
@@ -170,7 +170,6 @@
                                    class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
                         </div>
                     </div>
-
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                         <label for="facebook_link" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Link
                             en Facebook</label>
@@ -214,7 +213,15 @@
             });
 
             dropzone.on('removedfile', function (file) {
-                axios.delete('{{ route('temporary-files.destroy', 'uuid='.$uuid) }}/' + file.name);
+                axios.delete('{{ route('temporary-files.destroy', 'uuid='.$uuid) }}/', {
+                    data: {
+                        filename: file.name
+                    }
+                }).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
             });
         </script>
 </x-app-layout>

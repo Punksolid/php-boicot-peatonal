@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TemporaryFilesController extends Controller
 {
@@ -16,8 +17,7 @@ class TemporaryFilesController extends Controller
         ]);
         $uuid = $request->get('uuid');
         $files = $request->file('file');
-
-        $temporaryFiles = collect($files)->map(fn($file) => $file->store( 'temporary/'. $uuid));
+        $temporaryFiles = collect($files)->map(fn($file) => $file->storeAs( 'temporary/'. $uuid, $file->getClientOriginalName()));
 
         return response()->json([
             'temporaryFiles' => $temporaryFiles,
@@ -28,14 +28,7 @@ class TemporaryFilesController extends Controller
     {
         $filename = $request->get('filename');
         $uuid = $request->get('uuid');
-        if (Storage::delete('temporary/' . $uuid . '/' . $filename)){
-            return response()->json([
-                'message' => 'File deleted successfully',
-            ]);
-        } else {
-            return response()->json([
-                'message' => 'File not found',
-            ], 404);
-        };
+        Storage::disk('temporary')->delete( $uuid . $filename);
+
     }
 }
