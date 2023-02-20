@@ -79,7 +79,7 @@ plugins: [
                     <div class="hidden md:flex md:items-center md:space-x-6">
                         <a href="{{ route('login') }}" class="text-base font-medium text-white hover:text-gray-300">Log in</a>
                         <a href="{{ route('register') }}"
-                           class="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700">Registrate</a>
+                           class="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700">Regístrate</a>
                     </div>
                 </nav>
             </div>
@@ -149,9 +149,9 @@ plugins: [
                             class="mx-auto max-w-md px-6 sm:max-w-2xl sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
                             <div class="lg:py-24">
                                 <h1 class="mt-4 text-4xl font-bold tracking-tight text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                                    <span class="block">Una forma coordinada de</span>
+                                    <span >Una forma coordinada de</span>
                                     <span
-                                        class="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">activismo</span>
+                                        class="bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">activismo</span>
                                 </h1>
                                 <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">Un boicot consiste
                                     en negarse a comprar, vender, o practicar alguna otra forma de relación comercial o
@@ -172,7 +172,7 @@ plugins: [
                                             <div class="mt-3 sm:mt-0 sm:ml-3">
                                                 <button type="submit"
                                                         class="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900">
-                                                    Suscribete
+                                                    Suscríbete
                                                 </button>
                                             </div>
                                         </div>
@@ -198,11 +198,10 @@ plugins: [
             <!-- Feature section with grid -->
             <div class="relative bg-white py-16 sm:py-24 lg:py-32">
                 <div class="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-                    <h2 class="text-lg font-semibold text-cyan-600">Como funciona</h2>
+                    <h2 class="text-lg font-semibold text-cyan-600">Cómo funciona</h2>
                     <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Pasos básicos para hacer
                         la diferencia.</p>
-                    <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">Participar es muy sencillo, seguir los
-                        pasos es fundamental</p>
+
                     <div class="mt-12">
                         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                             <div class="pt-6">
@@ -333,8 +332,7 @@ plugins: [
                         </defs>
                     </svg>
                     <div class="mx-auto max-w-2xl text-center">
-                        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">No Hay Destacado Del Mes Aún</h2>
-                        <p class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Se el primero en registrar un negocio.</p>
+                        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Aún no hay destacado del mes se el primero en registrar un negocio. </h2>
                     </div>
                 </div>
             </div>
@@ -347,7 +345,7 @@ plugins: [
                     <div class="space-y-8 xl:col-span-1">
                         <img class="h-10" src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
                              alt="Company name">
-                        <p class="text-base text-gray-500">Making the world a better place through making a coordinated effort.</p>
+                        <p class="text-base text-gray-500">Boicot a todos los negocios que abusan de las banquetas con fines de lucro.</p>
                         <div class="flex space-x-6">
                             <a href="https://twitter.com/i/communities/1586057270831480832" class="text-gray-400 hover:text-gray-500">
                                 <span class="sr-only">Twitter</span>
@@ -362,7 +360,7 @@ plugins: [
                     </div>
                 </div>
                 <div class="mt-12 border-t border-gray-200 py-8">
-                    <p class="text-base text-gray-400 xl:text-center">2023.</p>
+                    <p class="text-base text-gray-400 xl:text-center">2023</p>
                 </div>
             </div>
         </footer>
