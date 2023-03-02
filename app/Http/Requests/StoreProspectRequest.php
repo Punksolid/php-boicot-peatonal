@@ -34,8 +34,18 @@ class StoreProspectRequest extends FormRequest
             'is_from_politician' => ['boolean'],
             'is_from_media' => ['boolean'],
             'is_from_business' => ['boolean'],
-            'google_maps_link' => ['required', $url_rule, 'max:255'],
-            'facebook_link' => ['required', $url_rule, 'max:255'],
+            'google_maps_link' => [
+                'nullable',
+                'required_without:facebook_link',
+                $url_rule,
+                'max:255',
+            ],
+            'facebook_link' => [
+                'nullable',
+                'required_without:google_maps_link',
+                $url_rule,
+                'max:255',
+            ],
 //            'cover-photo' => ['required', 'image', 'max:2048'],
         ];
     }

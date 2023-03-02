@@ -49,6 +49,7 @@
                             <textarea id="description"
                                       name="description"
                                       rows="3"
+                                      maxlength="255"
                                       class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 {{ old('description') }}
                             </textarea>
