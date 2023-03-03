@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProspectRequest;
-use App\Http\Requests\UpdateProspectRequest;
 use App\Models\Prospect;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -56,6 +51,16 @@ class ProspectController extends Controller
     public function show(Prospect $prospect): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('prospects.show')->with('prospect', $prospect);
+    }
+
+    public function destroy(Prospect $prospect)
+    {
+        if ($prospect->reporter_email !== auth()->user()->email) {
+            return redirect()->route('prospects.index');
+        }
+
+        $prospect->delete();
+        return redirect()->route('prospects.index')->with('success', 'Prospect deleted successfully');
     }
 
 }

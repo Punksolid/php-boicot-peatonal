@@ -18,7 +18,8 @@ class ProspectTest extends TestCase
     {
         parent::setUp();
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user);
     }
 
     /**
@@ -59,5 +60,14 @@ class ProspectTest extends TestCase
         $call->assertRedirect('/prospects');
         $this->assertDatabaseHas('prospects', $attributes);
 
+    }
+
+    public function test_api_can_delete_prospect()
+    {
+        $prospect = Prospect::factory()->create([
+            'reporter_email' => $this->user->email
+        ]);
+        $call = $this->delete(route('api.prospects.destroy', $prospect->id));
+        $call->assertStatus(200);
     }
 }

@@ -30,10 +30,15 @@ class Prospect extends Model implements HasMedia
         'image_url',
     ];
 
+    protected $hidden = [
+        'reporter_email'
+    ];
+
+
     public function getImageUrlAttribute($value)
     {
 //        @todo: remove this line when we have a proper image storage
-        $value = str_replace('public', 'storage', (string) $value);
+        $value = str_replace('public', 'storage', (string)$value);
         return url($value);
     }
 
@@ -70,5 +75,10 @@ class Prospect extends Model implements HasMedia
             ->addMediaConversion('preview')
             ->fit(Manipulations::FIT_CROP, 300, 300)
             ->nonQueued();
+    }
+
+    public function isCreatedByUserLogged(): bool
+    {
+        return $this->reporter_email === auth()->user()->email;
     }
 }
