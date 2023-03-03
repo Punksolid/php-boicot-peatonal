@@ -67,7 +67,7 @@ class ProspectTest extends TestCase
         $prospect = Prospect::factory()->create([
             'reporter_email' => $this->user->email
         ]);
-        $call = $this->delete(route('api.prospects.destroy', $prospect->id));
-        $call->assertStatus(200);
+        $call = $this->delete(route('prospects.destroy', $prospect->id));
+        $call->assertRedirect(route('prospects.index'));
     }
 }
