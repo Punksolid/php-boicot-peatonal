@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class SubscriptionTest extends TestCase
 {
     use WithFaker;
+    use DatabaseMigrations;
     /**
      * A basic feature test example.
      */

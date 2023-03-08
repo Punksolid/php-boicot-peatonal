@@ -1,8 +1,11 @@
 <x-mail::message>
-{{-- INSERT AN IMAGE --}}
-<img src="{{ $prospect->image_url }}" alt="Fotografía de {{ $prospect->description }}" class="h-full w-full object-cover object-center" />
-
-
+<img src="{{ $prospect->getFirstMediaUrl()  }}" alt="Fotografía de {{ $prospect->description }}" class="lg:col-span-2 lg:row-span-2 rounded-lg" />
+@if(isset($prospect->getMedia()[1]))
+    <img src="{{ $prospect->getMedia()[1]->getUrl() }}" alt="Imagen de invasión de banqueta" class="hidden lg:block rounded-lg">
+@endif
+@if(isset($prospect->getMedia()[2]))
+    <img src="{{ $prospect->getMedia()[2]->getUrl() }}" alt="Imagen de invasión de banqueta" class="hidden lg:block rounded-lg">
+@endif
 
     Hola,
 
