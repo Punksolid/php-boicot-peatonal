@@ -12,8 +12,6 @@ use Illuminate\Queue\SerializesModels;
 class FeaturedProspectOfTheMonth extends Mailable
 {
     use Queueable, SerializesModels;
-    public $google_maps_link;
-    public $facebook_link;
 
     /**
      * Create a new message instance.
@@ -22,8 +20,6 @@ class FeaturedProspectOfTheMonth extends Mailable
      */
     public function __construct(public $prospect)
     {
-        $this->google_maps_link = $prospect->google_maps_url;
-        $this->facebook_link = $prospect->facebook_url;
     }
 
     /**

@@ -1,5 +1,5 @@
 <x-mail::message>
-<img src="{{ $prospect->getFirstMediaUrl()  }}" alt="Fotografía de {{ $prospect->description }}" class="lg:col-span-2 lg:row-span-2 rounded-lg" />
+{{--<img src="{{ $prospect->getFirstMediaUrl()  }}" alt="Fotografía de {{ $prospect->description }}" class="lg:col-span-2 lg:row-span-2 rounded-lg" />--}}
 @if(isset($prospect->getMedia()[1]))
     <img src="{{ $prospect->getMedia()[1]->getUrl() }}" alt="Imagen de invasión de banqueta" class="hidden lg:block rounded-lg">
 @endif
@@ -27,17 +27,17 @@ Cómo participar?
 
     Listo! Ya has hecho tu parte.
 
-@if($google_maps_link)
-        <x-mail::button :url="$google_maps_link">
-            Ir Google Maps
-        </x-mail::button>
+@if($prospect->google_maps_link)
+<x-mail::button :url="$prospect->google_maps_link">
+    Ir Google Maps
+</x-mail::button>
 @endif
-@if($facebook_link)
+@if($prospect->facebook_link)
+<x-mail::button :url="$prospect->facebook_link">
+    Ir a Facebook
+</x-mail::button>
+@endif
 
-    <x-mail::button :url="$facebook_link">
-        Ir a Facebook
-    </x-mail::button>
-@endif
 
 
     Atentamente,
