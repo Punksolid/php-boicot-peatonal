@@ -14,7 +14,7 @@ Sin embargo, para lograr nuestros objetivos, necesitamos el apoyo de personas co
 
 Gracias por su apoyo y consideración. Esperamos trabajar juntos para hacer una diferencia positiva en nuestra comunidad.
 
-Como participar?
+Cómo participar?
 
     Da clic en los botones de abajo para ir a las respectivas plataformas.
 
@@ -24,13 +24,17 @@ Como participar?
 
     Listo! Ya has hecho tu parte.
 
+@if($google_maps_link)
+        <x-mail::button :url="$google_maps_link">
+            Ir Google Maps
+        </x-mail::button>
+@endif
+@if($facebook_link)
 
-<x-mail::button :url="$google_maps_link">
-    Ir Google Maps
-</x-mail::button>
-<x-mail::button :url="$facebook_link">
-    Ir a Facebook
-</x-mail::button>
+    <x-mail::button :url="$facebook_link">
+        Ir a Facebook
+    </x-mail::button>
+@endif
 
 
     Atentamente,

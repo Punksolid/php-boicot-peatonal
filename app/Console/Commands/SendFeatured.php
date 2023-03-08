@@ -5,10 +5,11 @@ namespace App\Console\Commands;
 use App\Mail\FeaturedProspectOfTheMonth;
 use App\Models\Prospect;
 use App\Models\Subscription;
+use App\Models\User;
 use App\Services\GetFeaturedProspectOfTheMonth;
 use Illuminate\Console\Command;
-use Illuminate\Mail\Mailer;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
+use Log;
 
 class SendFeatured extends Command
 {
@@ -26,7 +27,8 @@ class SendFeatured extends Command
      */
     protected $description = 'It will send the Featured Prospect of the Month';
 
-    public function __construct(private readonly GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth)
+    public function __construct(
+        private readonly GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth)
     {
         parent::__construct();
     }
@@ -34,16 +36,14 @@ class SendFeatured extends Command
     /**
      * Execute the console command.
      */
-    public function handle(Mailer $mailer): int
+    public function handle(): int
     {
         $prospect = $this->selectFeatured();
         $dontMarkAsFeatured = $this->option('dont-mark-as-featured');
-
-        $mailFeatured = new FeaturedProspectOfTheMonth($prospect);
-
-        foreach ($this->getEmails() as $email) {
-            $mailFeatured->to($email);
-            $mailFeatured->send($mailer);
+        $emails = $this->getEmails();
+        foreach ($emails as $email) {
+            Log::info("Sending email to $email");
+            Mail::to($email)->send(new FeaturedProspectOfTheMonth($prospect));
         }
 
         if (!$dontMarkAsFeatured) {
@@ -54,12 +54,15 @@ class SendFeatured extends Command
 
     public function getEmails(): array
     {
-        return Subscription::whereNotNull('verified_at')->select('email')->get()->toArray();
+        $subscriptors_emails = Subscription::whereNotNull('verified_at')->pluck('email')->toArray();
+        $users_emails = User::whereNotNull('email_verified_at')->pluck('email')->toArray();
+        $emails = array_merge($subscriptors_emails, $users_emails);
+
+        return array_unique($emails);
     }
 
     private function selectFeatured(): Prospect
     {
         return $this->getFeaturedProspectOfTheMonth->__invoke();
-
     }
 }

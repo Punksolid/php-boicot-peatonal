@@ -87,7 +87,7 @@
                         <h2 class="sr-only">Images</h2>
 
                         <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-                            <img src="{{ $prospect->getFirstMediaUrl()  }}" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
+                            <img src="{{ $prospect->getFirstMediaUrl()  }}" alt="Imagen de invasión de banqueta." class="lg:col-span-2 lg:row-span-2 rounded-lg">
 
                             @if(isset($prospect->getMedia()[1]))
                                 <img src="{{ $prospect->getMedia()[1]->getUrl() }}" alt="Imagen de invasión de banqueta" class="hidden lg:block rounded-lg">
