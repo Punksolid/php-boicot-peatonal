@@ -50,7 +50,13 @@ class ProspectController extends Controller
      */
     public function show(Prospect $prospect): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view('prospects.show')->with('prospect', $prospect);
+        $votes = $prospect->getCountVotes();
+        $cost_of_next_vote = auth()->user()->getNextVoteCost($prospect);
+        return view('prospects.show')
+            ->with('prospect', $prospect)
+            ->with('cost_of_next_vote', $cost_of_next_vote)
+            ->with('votes', $votes);
+
     }
 
     public function destroy(Prospect $prospect)

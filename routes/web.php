@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProspectController;
+use App\Http\Controllers\ProspectVotesController;
 use App\Http\Controllers\SubscribtionsController;
 use App\Models\Prospect;
 use App\Models\Subscription;
@@ -35,6 +36,7 @@ Route::get('/dashboard', fn() => view('dashboard'))->middleware(['auth', 'verifi
 Route::middleware('auth')->group(function () {
 
     Route::resource('prospects', ProspectController::class)->middleware('verified');
+    Route::resource('prospects/{prospect}/votes', ProspectVotesController::class)->middleware('verified');
 
     Route::get('/profile', (new ProfileController())->edit(...))->name('profile.edit');
     Route::patch('/profile', (new ProfileController())->update(...))->name('profile.update');

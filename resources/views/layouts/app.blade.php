@@ -15,9 +15,12 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -50,6 +53,19 @@
         </div>
 
     </main>
+
 </div>
-</body>
+@if(session()->has('success'))
+    <script>
+        toastr.success('{{ session()->get('success') }}');
+    </script>
+@endif
+@if(session()->has('error'))
+    <script>
+        toastr.error('{{ session()->get('error') }}');
+    </script>
+@endif
+@section('scripts')
+
+@endsection
 </html>

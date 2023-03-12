@@ -5,16 +5,19 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use LaravelQuadraticVoting\Interfaces\IsVotableInterface;
+use LaravelQuadraticVoting\Traits\IsVotable;
 use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Prospect extends Model implements HasMedia
+class Prospect extends Model implements HasMedia, IsVotableInterface
 {
     use HasFactory;
     use InteractsWithMedia;
+    use IsVotable;
 
     protected $fillable = [
         'name',
@@ -33,22 +36,6 @@ class Prospect extends Model implements HasMedia
     protected $hidden = [
         'reporter_email'
     ];
-
-
-    public function getImageUrlAttribute($value)
-    {
-//        @todo: remove this line when we have a proper image storage
-        $value = str_replace('public', 'storage', (string)$value);
-        return url($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function getVotesAttribute($value): int
-    {
-        return random_int(1, 99);
-    }
 
     public function markFeatured()
     {

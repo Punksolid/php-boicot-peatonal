@@ -18,13 +18,18 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
         ]);
+        $user->giveVoteCredits(100);
 
         Prospect::factory()->create([
             'name' => 'Seed Test Prospect'
+        ]);
+
+        Prospect::factory()->create([
+            'name' => 'Seed second Prospect'
         ]);
     }
 }

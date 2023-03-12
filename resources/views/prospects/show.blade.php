@@ -33,7 +33,7 @@
                             <h1 class="text-xl font-medium text-gray-900">{{ $prospect->name }}</h1>
                             <p class="text-xl font-medium text-gray-900">
                                Votos:
-                                {{ $prospect->votes }}
+                                {{ $votes }}
                             </p>
                         </div>
                         <!-- Reviews -->
@@ -100,8 +100,9 @@
                     </div>
 
                     <div class="mt-8 lg:col-span-5">
-                        <form>
-                            <!-- Color picker -->
+                        <form action="{{ route('votes.store', [$prospect->id]) }}" method="POST">
+                            @csrf
+{{--                            <!-- Color picker -->--}}
 {{--                            <div>--}}
 {{--                                <h2 class="text-sm font-medium text-gray-900">Color</h2>--}}
 
@@ -131,12 +132,12 @@
 {{--                                </fieldset>--}}
 {{--                            </div>--}}
 
-                            <!-- Size picker -->
+{{--                            <!-- Size picker -->--}}
 {{--                            <div class="mt-8">--}}
-{{--                                <div class="flex items-center justify-between">--}}
-{{--                                    <h2 class="text-sm font-medium text-gray-900">Size</h2>--}}
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-sm font-medium text-gray-900">Costo de créditos para el siguiente voto: {{ $cost_of_next_vote }}</h2>
 {{--                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See sizing chart</a>--}}
-{{--                                </div>--}}
+                                </div>
 
 {{--                                <fieldset class="mt-2">--}}
 {{--                                    <legend class="sr-only">Choose a size</legend>--}}
@@ -203,7 +204,6 @@
 {{--                                    </div>--}}
 {{--                                </fieldset>--}}
 {{--                            </div>--}}
-
                             <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dejar voto</button>
                         </form>
 
