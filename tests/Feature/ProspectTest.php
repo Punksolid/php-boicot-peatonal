@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Prospect;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
@@ -20,6 +19,14 @@ class ProspectTest extends TestCase
         $this->withoutExceptionHandling();
         $this->user = User::factory()->create();
         $this->actingAs($this->user);
+    }
+
+    public function test_it_can_show_prospect_details()
+    {
+        $prospect = Prospect::factory()->create();
+        $call = $this->get(route('prospects.show', $prospect->id));
+        $call->assertStatus(200);
+        $call->assertSee($prospect->name);
     }
 
     /**

@@ -4143,16 +4143,16 @@
         },
         {
             "name": "punksolid/laravel-quadratic-voting",
-            "version": "v0.9.0",
+            "version": "v0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Punksolid/laravel-quadratic-voting.git",
-                "reference": "593f70765211908f6d9485256da1f082e9c78261"
+                "reference": "84182556793d64aa7c49de88ac4549b4fe51a272"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Punksolid/laravel-quadratic-voting/zipball/593f70765211908f6d9485256da1f082e9c78261",
-                "reference": "593f70765211908f6d9485256da1f082e9c78261",
+                "url": "https://api.github.com/repos/Punksolid/laravel-quadratic-voting/zipball/84182556793d64aa7c49de88ac4549b4fe51a272",
+                "reference": "84182556793d64aa7c49de88ac4549b4fe51a272",
                 "shasum": ""
             },
             "require": {
@@ -4194,9 +4194,9 @@
             "description": "Voting system implementation for laravel. Quadratic voting approach.",
             "support": {
                 "issues": "https://github.com/Punksolid/laravel-quadratic-voting/issues",
-                "source": "https://github.com/Punksolid/laravel-quadratic-voting/tree/v0.9.0"
+                "source": "https://github.com/Punksolid/laravel-quadratic-voting/tree/v0.9.1"
             },
-            "time": "2023-03-12T20:32:18+00:00"
+            "time": "2023-03-13T18:26:31+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
