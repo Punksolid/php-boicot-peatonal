@@ -29,6 +29,17 @@ class ProspectTest extends TestCase
         $call->assertSee($prospect->name);
     }
 
+    public function test_it_can_show_prospect_list_of_not_featured()
+    {
+        $prospect = Prospect::factory()->create();
+        $prospect->markFeatured();
+
+        $call = $this->get(route('prospects.index'));
+
+        $call->assertStatus(200);
+        $call->assertDontSee($prospect->name);
+    }
+
     /**
      * A basic feature test example.
      */

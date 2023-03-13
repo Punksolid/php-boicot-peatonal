@@ -67,9 +67,9 @@ TEXT;
 
     public function getEmails(): array
     {
-        $subscriptors_emails = Subscription::whereNotNull('verified_at')->pluck('email')->toArray();
+        $subscriptions_emails = Subscription::whereNotNull('verified_at')->pluck('email')->toArray();
         $users_emails = User::whereNotNull('email_verified_at')->pluck('email')->toArray();
-        $emails = array_merge($subscriptors_emails, $users_emails);
+        $emails = array_merge($subscriptions_emails, $users_emails);
 
         return array_unique($emails);
     }

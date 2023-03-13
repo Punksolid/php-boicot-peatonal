@@ -16,7 +16,9 @@ class ProspectController extends Controller
      */
     public function index(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view('prospects.index')->with('prospects', Prospect::all());
+        $prospects = Prospect::notFeatured()->get();
+
+        return view('prospects.index')->with('prospects', $prospects);
     }
 
     /**

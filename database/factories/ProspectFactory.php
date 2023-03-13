@@ -30,6 +30,7 @@ class ProspectFactory extends Factory
             'image_url' => $this->faker->randomElement([
                 'https://pbs.twimg.com/media/Ffcsaj4VEAUtcjc?format=jpg&name=large'
             ]),
+            'featured_at' => null
         ];
     }
 }
