@@ -55,6 +55,7 @@ class ProspectTest extends TestCase
         unset($attributes['is_active']);
         unset($attributes['reporter_email']);
         unset($attributes['image_url']);
+        unset($attributes['featured_at']);
         foreach (array_keys($attributes) as $key) {
             $call->assertSee($key);
         }
@@ -72,6 +73,8 @@ class ProspectTest extends TestCase
         unset($attributes['reporter_email']);
         unset($attributes['image_url']);
         unset($attributes['cover-photo']);
+        unset($attributes['featured_at']);
+
 
         $call = $this->post('/prospects', $prospect->toArray());
         $call->assertStatus(302);
