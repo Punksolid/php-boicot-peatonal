@@ -48,4 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail,VoterInterface
     {
         $this->voteCredits()->delete();
     }
+
+    public function scopeVerified($query)
+    {
+        return $query->whereNotNull('email_verified_at');
+    }
 }

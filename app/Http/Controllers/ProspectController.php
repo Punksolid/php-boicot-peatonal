@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProspectStoreEvent;
 use App\Http\Requests\StoreProspectRequest;
 use App\Models\Prospect;
 use Illuminate\Http\RedirectResponse;
@@ -43,7 +44,7 @@ class ProspectController extends Controller
 
         $prospect->reporter_email = $request->user()->email;
         $prospect->save();
-
+        ProspectStoreEvent::dispatch($prospect);
         return redirect()->route('prospects.index');
     }
 
