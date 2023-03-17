@@ -28,7 +28,7 @@
 
                 <div class=" mt-4">
                     <p class="text-sm font-medium text-gray-900">{{ $prospect->name }}</p>
-                    <p class="mt-1 text-sm text-gray-500">{{ $prospect->description }}</p>
+                    <p class="mt-1 text-sm text-gray-500">{{ substr($prospect->description, 0, 100) }}...</p>
                 </div>
 
                 <div class="mt-2">

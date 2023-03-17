@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\ProspectVotesController;
@@ -30,12 +31,14 @@ Route::get('/', function (GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTh
 Route::post('/subscription', (new SubscribtionsController())->store(...))->name('subscription.store');
 Route::get('/subscription/verify', (new SubscribtionsController())->verify(...))->name('subscription.verify');
 Route::get('/subscription/show', (new SubscribtionsController())->show(...))->name('subscription.show');
+Route::get('/preguntas/como_funciona_el_sistema_de_votacion_cuadratica', [FaqController::class, 'show'])->name('faq.voting.system');
 
 Route::get('/dashboard', fn() => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
     Route::resource('prospects', ProspectController::class)->middleware('verified');
+    Route::post('prospects/{prospect}/votes/downvote', [ProspectVotesController::class, 'downvote'])->name('votes.downvote')->middleware('verified');
     Route::resource('prospects/{prospect}/votes', ProspectVotesController::class)->middleware('verified');
 
     Route::get('/profile', (new ProfileController())->edit(...))->name('profile.edit');

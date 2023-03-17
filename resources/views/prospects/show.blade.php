@@ -100,11 +100,6 @@
                     </div>
 
                     <div class="mt-8 lg:col-span-5">
-                        <form action="{{ route('votes.store', [$prospect->id]) }}" method="POST">
-                            @csrf
-{{--                            <!-- Color picker -->--}}
-{{--                            <div>--}}
-{{--                                <h2 class="text-sm font-medium text-gray-900">Color</h2>--}}
 
 {{--                                <fieldset class="mt-2">--}}
 {{--                                    <legend class="sr-only">Choose a color</legend>--}}
@@ -136,7 +131,7 @@
 {{--                            <div class="mt-8">--}}
                                 <div class="flex items-center justify-between">
                                     <h2 class="text-sm font-medium text-gray-900">Costo de créditos para el siguiente voto: {{ $cost_of_next_vote }}</h2>
-{{--                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See sizing chart</a>--}}
+                                    <a href="{{ route('faq.voting.system') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Como funciona el sistema de votación?</a>
                                 </div>
 
 {{--                                <fieldset class="mt-2">--}}
@@ -204,7 +199,15 @@
 {{--                                    </div>--}}
 {{--                                </fieldset>--}}
 {{--                            </div>--}}
-                            <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dejar voto</button>
+                        @if(auth()->user()->hasVotedOn($prospect))
+                            <form action="{{ route('votes.downvote', [$prospect->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Quitar Un Voto</button>
+                            </form>
+                        @endif
+                        <form action="{{ route('votes.store', [$prospect->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dejar Voto</button>
                         </form>
 
                         <!-- Product details -->

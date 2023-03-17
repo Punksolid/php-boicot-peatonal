@@ -53,4 +53,10 @@ class User extends Authenticatable implements MustVerifyEmail,VoterInterface
     {
         return $query->whereNotNull('email_verified_at');
     }
+
+    public function hasVotedOn(Prospect $prospect): bool
+    {
+
+        return $this->ideas()->where('votable_id', $prospect->id)->sum('quantity') > 0;
+    }
 }
