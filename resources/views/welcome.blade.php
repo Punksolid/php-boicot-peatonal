@@ -13,7 +13,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
-    <meta property="og:image" content="{{ $prospect->getFirstMediaUrl() }}">
+    <meta property="og:image" content="{{ optional($prospect)->getFirstMediaUrl() }}">
     <meta property="og:title" content="{{ config('app.name') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ config('app.url') }}">
