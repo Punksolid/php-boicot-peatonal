@@ -11,6 +11,22 @@
     {{--        insert tailwind css --}}
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <meta property="og:image" content="{{ $prospect->getFirstMediaUrl() }}">
+    <meta property="og:title" content="{{ config('app.name') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.boicotpeatonal.org/">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="628">
+    <meta property="og:description"
+          content="BoicotPeatonal.ORG es una plataforma para coordinar a todos los usuarios a boicotear reviews de negocios que abusan del espacio público. Y TE NECESITAMOS!">
+    <meta property="og:site_name" content="Boicot Peatonal">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@boicotpeatonal">
+    <meta name="twitter:creator" content="@boicotpeatonal">
+    <meta name="twitter:title" content="{{ config('app.name') }}">
+
 </head>
 <body>
 <!--
