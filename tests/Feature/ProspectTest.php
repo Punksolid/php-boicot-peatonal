@@ -74,6 +74,8 @@ class ProspectTest extends TestCase
         unset($attributes['image_url']);
         unset($attributes['cover-photo']);
         unset($attributes['featured_at']);
+        unset($attributes['google_maps_link']);
+        unset($attributes['facebook_link']);
 
 
         $call = $this->post('/prospects', $prospect->toArray());
