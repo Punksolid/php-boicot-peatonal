@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ProspectStoreEvent;
 use App\Http\Requests\StoreProspectRequest;
 use App\Models\Prospect;
+use App\Services\UrlShortenerGenerator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -41,6 +42,13 @@ class ProspectController extends Controller
         foreach ($files as $file) {
             $prospect->addMediaFromDisk($file, 'temporary')->toMediaCollection();
         }
+        $prospect->google_maps_link = $request->get('google_maps_link')
+            ? UrlShortenerGenerator::generate($request->get('google_maps_link'))
+            : $prospect->google_maps_link;
+
+        $prospect->facebook_link = $request->get('facebook_link')
+            ? UrlShortenerGenerator::generate($request->get('facebook_link'))
+            : $prospect->facebook_link;
 
         $prospect->reporter_email = $request->user()->email;
         $prospect->save();
