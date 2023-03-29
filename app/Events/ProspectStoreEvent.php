@@ -13,7 +13,9 @@ use Illuminate\Queue\SerializesModels;
 
 class ProspectStoreEvent
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public Prospect $prospect;
 
@@ -36,5 +38,4 @@ class ProspectStoreEvent
     {
         return new PrivateChannel('channel-name');
     }
-
 }
