@@ -4,7 +4,6 @@ namespace App\Services;
 
 class BoicotPeatonalNameGenerator
 {
-
     public static function generate(mixed $name)
     {
         return self::randomAnimal() . ' ' . self::randomColor() . ' ' . self::randomPersonality();

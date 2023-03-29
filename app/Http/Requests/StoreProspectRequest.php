@@ -21,9 +21,8 @@ class StoreProspectRequest extends FormRequest
      */
     public function rules()
     {
-
         $url_rule = 'active_url';
-        if ( in_array(config('app.env'), ['local', 'testing', 'development']) ) {
+        if (in_array(config('app.env'), ['local', 'testing', 'development'])) {
             $url_rule = 'url';
         }
 

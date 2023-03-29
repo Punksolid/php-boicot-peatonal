@@ -67,7 +67,6 @@ class ProspectController extends Controller
             ->with('prospect', $prospect)
             ->with('cost_of_next_vote', $cost_of_next_vote)
             ->with('votes', $votes);
-
     }
 
     public function destroy(Prospect $prospect)
@@ -79,5 +78,4 @@ class ProspectController extends Controller
         $prospect->delete();
         return redirect()->route('prospects.index')->with('success', 'Prospect deleted successfully');
     }
-
 }

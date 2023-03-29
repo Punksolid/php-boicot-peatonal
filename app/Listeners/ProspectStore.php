@@ -25,13 +25,12 @@ class ProspectStore implements ShouldQueue
      *
      * @return void
      */
-    public function handle( ProspectStoreEvent $prospect_store_event): void
+    public function handle(ProspectStoreEvent $prospect_store_event): void
     {
         $prospect = $prospect_store_event->prospect;
 
         User::verified()->get()->each(function ($user) use ($prospect) {
             \Mail::to($user->email)->send(new NewProspectNotificationEmail($prospect));
         });
-
     }
 }
