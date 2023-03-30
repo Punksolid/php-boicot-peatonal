@@ -9,7 +9,6 @@ class UrlShortener extends Controller
 {
     public function redirect(Request $request)
     {
-
         $slug = $request->path();
         $link = Link::where('slug', $slug)->firstOrFail();
 
@@ -18,5 +17,4 @@ class UrlShortener extends Controller
 
         return redirect($link->url);
     }
-
 }
