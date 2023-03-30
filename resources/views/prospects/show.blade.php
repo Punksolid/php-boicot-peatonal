@@ -32,54 +32,11 @@
                         <div class="flex justify-between">
                             <h1 class="text-xl font-medium text-gray-900">{{ $prospect->name }}</h1>
                             <p class="text-xl font-medium text-gray-900">
-                               Votos:
-                                {{ $votes }}
+                               Votos: {{ $votes }}
                             </p>
                         </div>
                         <!-- Reviews -->
-                        <div class="mt-4">
-                            <h2 class="sr-only">Reviews</h2>
-                            <div class="flex items-center">
-                                <p class="text-sm text-gray-700">
-{{--                                    3.9--}}
-                                    <span class="sr-only"> out of 5 stars</span>
-                                </p>
-{{--                                <div class="ml-1 flex items-center">--}}
-{{--                                    <!----}}
-{{--                                      Heroicon name: mini/star--}}
-
-{{--                                      Active: "text-yellow-400", Inactive: "text-gray-200"--}}
-{{--                                    -->--}}
-{{--                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-
-{{--                                    <!-- Heroicon name: mini/star -->--}}
-{{--                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-
-{{--                                    <!-- Heroicon name: mini/star -->--}}
-{{--                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-
-{{--                                    <!-- Heroicon name: mini/star -->--}}
-{{--                                    <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-
-{{--                                    <!-- Heroicon name: mini/star -->--}}
-{{--                                    <svg class="text-gray-200 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-{{--                                </div>--}}
-                                <div aria-hidden="true" class="ml-4 text-sm text-gray-300">·</div>
-{{--                                <div class="ml-4 flex">--}}
-{{--                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See all 512 reviews</a>--}}
-{{--                                </div>--}}
-                            </div>
-                        </div>
+                      
                     </div>
 
                     <!-- Image gallery -->
@@ -99,133 +56,54 @@
                         </div>
                     </div>
 
-                    <div class="mt-8 lg:col-span-5">
+                    <div class="lg:col-span-5">
 
-{{--                                <fieldset class="mt-2">--}}
-{{--                                    <legend class="sr-only">Choose a color</legend>--}}
-{{--                                    <div class="flex items-center space-x-3">--}}
-{{--                                        <!----}}
-{{--                                          Active and Checked: "ring ring-offset-1"--}}
-{{--                                          Not Active and Checked: "ring-2"--}}
-{{--                                        -->--}}
-{{--                                        <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-900">--}}
-{{--                                            <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-0-label">--}}
-{{--                                            <span id="color-choice-0-label" class="sr-only"> Black </span>--}}
-{{--                                            <span aria-hidden="true" class="h-8 w-8 bg-gray-900 border border-black border-opacity-10 rounded-full"></span>--}}
-{{--                                        </label>--}}
 
-{{--                                        <!----}}
-{{--                                          Active and Checked: "ring ring-offset-1"--}}
-{{--                                          Not Active and Checked: "ring-2"--}}
-{{--                                        -->--}}
-{{--                                        <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">--}}
-{{--                                            <input type="radio" name="color-choice" value="Heather Grey" class="sr-only" aria-labelledby="color-choice-1-label">--}}
-{{--                                            <span id="color-choice-1-label" class="sr-only"> Heather Grey </span>--}}
-{{--                                            <span aria-hidden="true" class="h-8 w-8 bg-gray-400 border border-black border-opacity-10 rounded-full"></span>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </fieldset>--}}
-{{--                            </div>--}}
-
-{{--                            <!-- Size picker -->--}}
-{{--                            <div class="mt-8">--}}
-                                <div class="flex items-center justify-between">
-                                    <h2 class="text-sm font-medium text-gray-900">Costo de créditos para el siguiente voto: {{ $cost_of_next_vote }}</h2>
-                                    <a href="{{ route('faq.voting.system') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Como funciona el sistema de votación?</a>
-                                </div>
-
-{{--                                <fieldset class="mt-2">--}}
-{{--                                    <legend class="sr-only">Choose a size</legend>--}}
-{{--                                    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">--}}
-{{--                                        <!----}}
-{{--                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"--}}
-{{--                                          Active: "ring-2 ring-offset-2 ring-indigo-500"--}}
-{{--                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"--}}
-{{--                                        -->--}}
-{{--                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">--}}
-{{--                                            <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">--}}
-{{--                                            <span id="size-choice-0-label">XXS</span>--}}
-{{--                                        </label>--}}
-
-{{--                                        <!----}}
-{{--                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"--}}
-{{--                                          Active: "ring-2 ring-offset-2 ring-indigo-500"--}}
-{{--                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"--}}
-{{--                                        -->--}}
-{{--                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">--}}
-{{--                                            <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">--}}
-{{--                                            <span id="size-choice-1-label">XS</span>--}}
-{{--                                        </label>--}}
-
-{{--                                        <!----}}
-{{--                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"--}}
-{{--                                          Active: "ring-2 ring-offset-2 ring-indigo-500"--}}
-{{--                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"--}}
-{{--                                        -->--}}
-{{--                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">--}}
-{{--                                            <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">--}}
-{{--                                            <span id="size-choice-2-label">S</span>--}}
-{{--                                        </label>--}}
-
-{{--                                        <!----}}
-{{--                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"--}}
-{{--                                          Active: "ring-2 ring-offset-2 ring-indigo-500"--}}
-{{--                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"--}}
-{{--                                        -->--}}
-{{--                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">--}}
-{{--                                            <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">--}}
-{{--                                            <span id="size-choice-3-label">M</span>--}}
-{{--                                        </label>--}}
-
-{{--                                        <!----}}
-{{--                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"--}}
-{{--                                          Active: "ring-2 ring-offset-2 ring-indigo-500"--}}
-{{--                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"--}}
-{{--                                        -->--}}
-{{--                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">--}}
-{{--                                            <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">--}}
-{{--                                            <span id="size-choice-4-label">L</span>--}}
-{{--                                        </label>--}}
-
-{{--                                        <!----}}
-{{--                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"--}}
-{{--                                          Active: "ring-2 ring-offset-2 ring-indigo-500"--}}
-{{--                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"--}}
-{{--                                        -->--}}
-{{--                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 opacity-25 cursor-not-allowed">--}}
-{{--                                            <input type="radio" name="size-choice" value="XL" disabled class="sr-only" aria-labelledby="size-choice-5-label">--}}
-{{--                                            <span id="size-choice-5-label">XL</span>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </fieldset>--}}
-{{--                            </div>--}}
-                        @if(auth()->user()->hasVotedOn($prospect))
-                            <form action="{{ route('votes.downvote', [$prospect->id]) }}" method="POST">
+                    <!-- Voting -->
+                        <div class="mt-4 pb-8 border-b border-gray-200">
+                            <h2 class="mb-2" >Votar </h3>
+                            <div class='flex justify-between gap-5'>
+                            @if(auth()->user()->hasVotedOn($prospect))
+                                <form action="{{ route('votes.downvote', [$prospect->id]) }}" method="POST" class="flex-auto">
+                                    @csrf
+                                    <button type="submit" 
+                                    aria-label="Quitar un voto"
+                                    class="w-full rounded-md border border-indigo-400 bg-transparent py-3 px-8 text-base font-extrabold text-indigo-500 hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                        - 1
+                                    </button>
+                                </form>
+                            @endif
+                            <form action="{{ route('votes.store', [$prospect->id]) }}" method="POST" class="flex-auto">
                                 @csrf
-                                <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Quitar Un Voto</button>
+                                <button type="submit" 
+                                aria-label="Dejar un voto"
+                                class="w-full rounded-md border border-transparent bg-indigo-400 py-3 px-8 text-base font-extrabold text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    + 1
+                                </button>
                             </form>
-                        @endif
-                        <form action="{{ route('votes.store', [$prospect->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Dejar Voto</button>
-                        </form>
 
+                        </div>
+                        <div class="mt-2">
+                            <p class="text-sm font-medium text-gray-900">Costo de créditos para el siguiente voto: {{ $cost_of_next_vote }}</p>
+                            <a href="{{ route('faq.voting.system') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">¿Cómo funciona el sistema de votación?</a>
+                        </div>
+                    </div>
                         <!-- Product details -->
-                        <div class="mt-10">
-                            <h2 class="text-sm font-medium text-gray-900">{{ __('Description') }}</h2>
+                        <div class="mt-8">
+                            <h2 class="font-medium text-gray-900 mb-2">{{ __('Description') }}</h2>
 
-                            <div class="prose prose-sm mt-4 text-gray-500">
+                            <div class="prose prose-sm  text-gray-500">
                                 {{ $prospect->description }}
                             </div>
                         </div>
 
                         <div class="mt-8 border-t border-gray-200 pt-8">
-                            <h2 class="text-sm font-medium text-gray-900">Caracteristicas especiales</h2>
+                            <h2 class="font-medium text-gray-900 mb-2">Características especiales</h2>
 
-                            <div class="prose prose-sm mt-4 text-gray-500">
+                            <div class="prose prose-sm  text-gray-500">
                                 <ul role="list">
                                     @if($prospect->is_from_politician)
-                                        <li>Parece que este lugar está relacionado a un politico o funcionaro público.</li>
+                                        <li>Parece que este lugar está relacionado a un político o funcionaro público.</li>
                                     @endif
                                     @if($prospect->is_from_bussiness)
                                         <li>Este lugar es de un negocio.</li>
@@ -238,11 +116,12 @@
                         </div>
 
                         <!-- Policies -->
-                        <section aria-labelledby="policies-heading" class="mt-10">
+                        <section aria-labelledby="policies-heading" class="mt-8">
                             <h2 id="policies-heading" class="sr-only">Our Policies</h2>
-                            <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                            <dl class="">
                                 @if($prospect->google_maps_link)
-                                    <a href="{{ $prospect->google_maps_link }}">
+                                <div class="mb-2">
+                                    <a href="{{ $prospect->google_maps_link }}" class="mb-2" >
                                         <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
                                             <dt>
                                                 <!-- Heroicon name: outline/globe-americas -->
@@ -254,9 +133,10 @@
                                             <dd class="mt-1 text-sm text-gray-500">Mucha gente entra a ver la calificación general.</dd>
                                         </div>
                                     </a>
+</div>
                                 @endif
                                 @if($prospect->facebook_link)
-                                    <a href="{{ $prospect->facebook_link }}">
+                                    <a href="{{ $prospect->facebook_link }}" >
                                         <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
                                             <dt>
                                                 <!-- Heroicon name: outline/currency-dollar -->
@@ -272,6 +152,7 @@
 
                             </dl>
                         </section>
+
                         <!-- Share buttons section -->
                         <div class="mt-8 border-t border-gray-200 pt-8">
 
