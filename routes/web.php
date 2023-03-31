@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\MagicLinkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\ProspectVotesController;
@@ -12,6 +13,8 @@ use App\Models\User;
 use App\Services\GetFeaturedProspectOfTheMonth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
+use MagicLink\Actions\LoginAction;
+use MagicLink\MagicLink;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +64,12 @@ Route::get('/🔥', function () {
     ], 200);
 
 })->name('featured');
+
+Route::post('/login/magic', [MagicLinkController::class, 'sendEmail'])->name('login.magic');
+
+
+
+
 
 Route::get('login', fn() => view('auth.login'))->name('login');
 require __DIR__.'/auth.php';
