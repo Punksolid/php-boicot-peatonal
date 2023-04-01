@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new MailMessage)
+            return (new MailMessage())
                 ->subject('Verifica tu dirección de correo electrónico')
                 ->line("En nombre de todo el equipo de BoicotPeatonal.ORG, queremos darte las gracias por registrarte en nuestra plataforma. Sabemos que tu tiempo es valioso y apreciamos el hecho de que hayas decidido unirte a nosotros en esta lucha por la justicia social y la seguridad vial.")
                 ->line("Al registrarte en BoicotPeatonal.ORG, te has convertido en parte de una comunidad que se preocupa por el bienestar de los peatones y ciclistas en nuestras ciudades. Tu compromiso y apoyo son fundamentales para llevar adelante nuestra misión y hacer que nuestras calles sean lugares más seguros para todos.")

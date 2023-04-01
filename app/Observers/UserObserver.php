@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserObserver
 {
-    const INITIAL_VOTE_CREDITS = 50;
+    public const INITIAL_VOTE_CREDITS = 50;
 
     /**
      * Handle the User "created" event.
