@@ -12,7 +12,8 @@ use Illuminate\Queue\SerializesModels;
 
 class EmailVerifySubscriber extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public string $uuid;
     public string $verification_url;
@@ -25,7 +26,7 @@ class EmailVerifySubscriber extends Mailable
     public function __construct(Subscription $subscription)
     {
         $this->uuid = $subscription->id;
-        $this->verification_url = route('subscription.verify', ['token' => $this->uuid] );
+        $this->verification_url = route('subscription.verify', ['token' => $this->uuid]);
     }
 
     /**
@@ -46,7 +47,6 @@ class EmailVerifySubscriber extends Mailable
      * @return \Illuminate\Mail\Mailables\Content
      */
     public function content()
-
     {
         return new Content(
             markdown: 'mail.email-verify-subscriber',

@@ -10,9 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 use LaravelQuadraticVoting\Interfaces\VoterInterface;
 use LaravelQuadraticVoting\Traits\VoterTrait;
 
-class User extends Authenticatable implements MustVerifyEmail,VoterInterface
+class User extends Authenticatable implements MustVerifyEmail, VoterInterface
 {
-    use HasApiTokens, HasFactory, Notifiable, VoterTrait;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use VoterTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -56,7 +59,6 @@ class User extends Authenticatable implements MustVerifyEmail,VoterInterface
 
     public function hasVotedOn(Prospect $prospect): bool
     {
-
         return $this->ideas()->where('votable_id', $prospect->id)->sum('quantity') > 0;
     }
 }

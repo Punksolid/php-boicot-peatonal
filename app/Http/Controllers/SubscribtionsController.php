@@ -28,7 +28,6 @@ class SubscribtionsController extends Controller
 
     public function show(Request $request)
     {
-
         $message = $request->session()->get('message');
         return view('subscription.thank_you')->with('message', $message);
     }

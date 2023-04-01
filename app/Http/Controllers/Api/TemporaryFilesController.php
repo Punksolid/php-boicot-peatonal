@@ -17,7 +17,7 @@ class TemporaryFilesController extends Controller
         ]);
         $uuid = $request->get('uuid');
         $files = $request->file('file');
-        $temporaryFiles = collect($files)->map(fn($file) => $file->storeAs( 'temporary/'. $uuid, $file->getClientOriginalName()));
+        $temporaryFiles = collect($files)->map(fn ($file) => $file->storeAs('temporary/'. $uuid, $file->getClientOriginalName()));
 
         return response()->json([
             'temporaryFiles' => $temporaryFiles,
@@ -28,7 +28,6 @@ class TemporaryFilesController extends Controller
     {
         $filename = $request->get('filename');
         $uuid = $request->get('uuid');
-        Storage::disk('temporary')->delete( $uuid . $filename);
-
+        Storage::disk('temporary')->delete($uuid . $filename);
     }
 }

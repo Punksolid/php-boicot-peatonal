@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class ProspectTest extends TestCase
 {
-
     use WithFaker;
 
     protected function setUp(): void
@@ -59,12 +58,10 @@ class ProspectTest extends TestCase
         foreach (array_keys($attributes) as $key) {
             $call->assertSee($key);
         }
-
     }
 
     public function test_store_prospect(): void
     {
-
         $prospect = Prospect::factory()->make([
             'cover-photo' => UploadedFile::fake()->create('file.jpg', 500)
         ]);
@@ -82,7 +79,6 @@ class ProspectTest extends TestCase
         $call->assertStatus(302);
         $call->assertRedirect('/prospects');
         $this->assertDatabaseHas('prospects', $attributes);
-
     }
 
     public function test_api_can_delete_prospect()

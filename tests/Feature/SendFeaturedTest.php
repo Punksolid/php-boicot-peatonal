@@ -35,7 +35,6 @@ class SendFeaturedTest extends TestCase
         Mail::assertSent(FeaturedProspectOfTheMonth::class, function ($mail) use ($subscriptor) {
             return $mail->hasTo($subscriptor->email);
         });
-
     }
 
     public function test_get_emails()
