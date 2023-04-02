@@ -9,17 +9,17 @@ class GetFeaturedProspectOfTheMonth
 
     public function __invoke(): ?Prospect
     {
-        $featured = Prospect::featured()->first();
+        $newFeatured = $this->selectNewFeaturedProspect();
 
-        if ($featured) {
-            return $featured;
+        if (!$newFeatured) {
+            return Prospect::notFeatured()->inRandomOrder()->first();
         }
-        return $this->selectNewFeaturedProspect();
+
+        return $newFeatured;
     }
 
     private function selectNewFeaturedProspect(): ?Prospect
     {
-
         return Prospect::
         notFeatured()
             ->whereHas('voters')

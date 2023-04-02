@@ -25,7 +25,8 @@ class SendFeaturedTest extends TestCase
     public function test_send_email_when_executing_command()
     {
         $subscriptor = Subscription::factory()->create();
-        $prospect = Prospect::factory()->create();
+        Prospect::factory()->create();
+
         Mail::fake();
         Mail::assertNothingSent();
         Mail::assertNothingOutgoing();
