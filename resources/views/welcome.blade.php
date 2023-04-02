@@ -315,10 +315,10 @@ plugins: [
                             <p class="mt-6 text-lg leading-8 text-gray-200 font-semibold">{{ $prospect->description }}</p>
                         </div>
                         <div class="mx-auto max-w-2xl text-center">
-                            @if($prospect->google_maps_link)
+                            @if($prospect->facebook_link)
                             <a href="{{ $prospect->facebook_link }}"><x-primary-button>Página de Facebook</x-primary-button></a>
                             @endif
-                            @if($prospect->facebook_link)
+                            @if($prospect->google_maps_link)
                             <a href="{{ $prospect->google_maps_link }}"><x-primary-button>Google Maps</x-primary-button></a>
                             @endif
                         </div>
