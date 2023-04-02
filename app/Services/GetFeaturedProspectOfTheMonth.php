@@ -19,6 +19,14 @@ class GetFeaturedProspectOfTheMonth
 
     private function selectNewFeaturedProspect(): ?Prospect
     {
-        return Prospect::notFeatured()->first();
+
+        return Prospect::
+        notFeatured()
+            ->whereHas('voters')
+            ->with('voters.ideas')
+            ->withSum('voters', 'votes.quantity')
+            ->orderByDesc('voters_sum_votesquantity')
+            ->first();
+
     }
 }

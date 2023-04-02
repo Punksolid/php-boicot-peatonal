@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ProspectStoreEvent;
 use App\Http\Requests\StoreProspectRequest;
 use App\Models\Prospect;
+use App\Services\GetFeaturedProspectOfTheMonth;
 use App\Services\UrlShortenerGenerator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -19,8 +20,12 @@ class ProspectController extends Controller
     public function index(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $prospects = Prospect::notFeatured()->get();
+        $mostVotedProspect = (new GetFeaturedProspectOfTheMonth())->__invoke();
+        $mostVotedProspectId = $mostVotedProspect?->id;
 
-        return view('prospects.index')->with('prospects', $prospects);
+        return view('prospects.index')
+            ->with('prospects', $prospects)
+            ->with('mostVotedProspectId', $mostVotedProspectId);
     }
 
     /**

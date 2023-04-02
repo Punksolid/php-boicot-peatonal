@@ -23,7 +23,9 @@
                         class="h-full  object-cover object-center text-gray-500">
 
                     <div class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
-                    <p class="absolute bottom-1 right-2 text-lg font-semibold text-white">Votos: {{ $prospect->getCountVotes() }}</p>
+                    <p class="absolute bottom-1 right-2 text-lg font-semibold @if($mostVotedProspectId == $prospect->id) text-red-300 @else text-white @endif">Votos:
+                        {{ $prospect->getCountVotes() }}
+                    </p>
                 </div>
 
                 <div class=" mt-4">
