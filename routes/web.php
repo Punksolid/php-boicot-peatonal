@@ -27,7 +27,7 @@ use MagicLink\MagicLink;
 |
 */
 // get all urls that start with 1 and redirect to the original url
-Route::get('/{slug}', [UrlShortener::class, 'redirect'])->where('slug', '1[0-9A-Za-z]{5}');
+Route::get('/{slug}', (new UrlShortener())->redirect(...))->where('slug', '1[0-9A-Za-z]{5}');
 Route::get('/', function (GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth) {
     $prospect = $getFeaturedProspectOfTheMonth->__invoke();
     return view('welcome')->with(['prospect' => $prospect]);
@@ -36,14 +36,14 @@ Route::get('/', function (GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTh
 Route::post('/subscription', (new SubscribtionsController())->store(...))->name('subscription.store');
 Route::get('/subscription/verify', (new SubscribtionsController())->verify(...))->name('subscription.verify');
 Route::get('/subscription/show', (new SubscribtionsController())->show(...))->name('subscription.show');
-Route::get('/preguntas/como_funciona_el_sistema_de_votacion_cuadratica', [FaqController::class, 'show'])->name('faq.voting.system');
+Route::get('/preguntas/como_funciona_el_sistema_de_votacion_cuadratica', (new FaqController())->show(...))->name('faq.voting.system');
 
 Route::get('/dashboard', fn() => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
     Route::resource('prospects', ProspectController::class)->middleware('verified');
-    Route::post('prospects/{prospect}/votes/downvote', [ProspectVotesController::class, 'downvote'])->name('votes.downvote')->middleware('verified');
+    Route::post('prospects/{prospect}/votes/downvote', (new ProspectVotesController())->downvote(...))->name('votes.downvote')->middleware('verified');
     Route::resource('prospects/{prospect}/votes', ProspectVotesController::class)->middleware('verified');
 
     Route::get('/profile', (new ProfileController())->edit(...))->name('profile.edit');
@@ -65,7 +65,7 @@ Route::get('/🔥', function () {
 
 })->name('featured');
 
-Route::post('/login/magic', [MagicLinkController::class, 'sendEmail'])->name('login.magic');
+Route::post('/login/magic', (new MagicLinkController())->sendEmail(...))->name('login.magic');
 
 
 

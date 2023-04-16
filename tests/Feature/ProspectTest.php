@@ -11,6 +11,7 @@ use Tests\TestCase;
 class ProspectTest extends TestCase
 {
 
+    public $user;
     use WithFaker;
 
     protected function setUp(): void

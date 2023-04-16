@@ -14,7 +14,7 @@ return static function (RectorConfig $rectorConfig): void {
 //        __DIR__ . '/bootstrap',
 //        __DIR__ . '/config',
         __DIR__ . '/lang',
-        __DIR__ . '/packages',
+//        __DIR__ . '/packages',
         __DIR__ . '/public',
         __DIR__ . '/resources',
         __DIR__ . '/routes',
@@ -30,6 +30,6 @@ return static function (RectorConfig $rectorConfig): void {
         $rectorConfig->sets([
             LevelSetList::UP_TO_PHP_81,
             LevelSetList::UP_TO_PHP_82,
-            SetList::CODE_QUALITY,
+//            SetList::CODE_QUALITY,
         ]);
 };

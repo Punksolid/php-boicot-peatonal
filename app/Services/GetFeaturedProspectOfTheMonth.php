@@ -14,7 +14,7 @@ class GetFeaturedProspectOfTheMonth
         if (!$getFeaturedProspectOfTheMonth) {
             $newFeaturedProspect = $this->selectNewFeaturedProspect();
 
-            if (!$newFeaturedProspect) {
+            if (!$newFeaturedProspect instanceof \App\Models\Prospect) {
                 return null;
             }
             $newFeaturedProspect->featured_at = now();

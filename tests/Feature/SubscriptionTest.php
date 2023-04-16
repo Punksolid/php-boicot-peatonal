@@ -37,8 +37,6 @@ class SubscriptionTest extends TestCase
             'email' => $subscriber->email,
         ]);
 
-        \Mail::assertSent(MagicLink::class, function ($mail) use ($subscriber) {
-            return $mail->hasTo($subscriber->email);
-        });
+        \Mail::assertSent(MagicLink::class, fn($mail) => $mail->hasTo($subscriber->email));
     }
 }

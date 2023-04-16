@@ -33,9 +33,7 @@ class SendFeaturedTest extends TestCase
         Mail::assertNothingQueued();
         $this->artisan('prospects:send-featured');
 
-        Mail::assertSent(FeaturedProspectOfTheMonth::class, function ($mail) use ($subscriptor) {
-            return $mail->hasTo($subscriptor->email);
-        });
+        Mail::assertSent(FeaturedProspectOfTheMonth::class, fn($mail) => $mail->hasTo($subscriptor->email));
 
     }
 
