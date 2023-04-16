@@ -9,13 +9,22 @@ class GetFeaturedProspectOfTheMonth
 
     public function __invoke(): ?Prospect
     {
-        $newFeatured = $this->selectNewFeaturedProspect();
+        $getFeaturedProspectOfTheMonth = $this->getFeaturedProspectOfTheMonth();
 
-        if (!$newFeatured) {
-            return Prospect::notFeatured()->inRandomOrder()->first();
+        if (!$getFeaturedProspectOfTheMonth) {
+            $newFeaturedProspect = $this->selectNewFeaturedProspect();
+
+            if (!$newFeaturedProspect) {
+                return null;
+            }
+            $newFeaturedProspect->featured_at = now();
+            $newFeaturedProspect->save();
+
+            return $newFeaturedProspect;
+
         }
 
-        return $newFeatured;
+        return $getFeaturedProspectOfTheMonth;
     }
 
     private function selectNewFeaturedProspect(): ?Prospect
@@ -28,5 +37,10 @@ class GetFeaturedProspectOfTheMonth
             ->orderByDesc('voters_sum_votesquantity')
             ->first();
 
+    }
+
+    private function getFeaturedProspectOfTheMonth()
+    {
+        return Prospect::orderBy('featured_at', 'desc')->first();
     }
 }

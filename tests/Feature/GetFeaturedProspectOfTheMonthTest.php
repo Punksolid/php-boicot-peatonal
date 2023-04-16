@@ -34,4 +34,27 @@ class GetFeaturedProspectOfTheMonthTest extends TestCase
         $this->assertEquals(10, $mostVoted->getCountVotes());
         $this->assertEquals($mostVoted->id, $prospects->id);
     }
+
+    /**
+     *
+     */
+    public function test_get_featured()
+    {
+        $prospects = Prospect::factory()->count(3)->create();
+
+        $prospectFeatured = $prospects->first();
+        $prospectFeatured->featured_at = now()->subDay();
+        $prospectFeatured->save();
+        $notFeatured = $prospects->last();
+
+        /** @var User $user */
+        $user = tap(User::factory()->create())->giveVoteCredits(5000);
+        $user->voteOn($prospectFeatured,1+4+9+16+25+36+49+64+81);
+        $user->voteOn($notFeatured,1+4+9+16+25+36+49+64+81+100);
+
+        $prospects = (new GetFeaturedProspectOfTheMonth())->__invoke();
+
+        $this->assertEquals($prospectFeatured->id, $prospects->id);
+        
+    }
 }
