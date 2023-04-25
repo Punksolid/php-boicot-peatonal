@@ -37,7 +37,7 @@ class Prospect extends Model implements HasMedia, IsVotableInterface
         'reporter_email'
     ];
 
-    public function markFeatured()
+    public function markFeatured(): void
     {
         $this->featured_at = now();
         $this->save();

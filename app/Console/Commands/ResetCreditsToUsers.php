@@ -30,8 +30,8 @@ class ResetCreditsToUsers extends Command
      */
     public function handle()
     {
-        /** @var User $user */
         $users = User::all();
+        /** @var User $user */
         foreach ($users as $user) {
             $user->resetVoteCredits();
             Log::info('User ' . $user->id . ' credits reset to 0');

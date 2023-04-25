@@ -17,10 +17,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(SendFeatured::class)->monthly()->tuesdays()->at('20:00');
+        $schedule->command(SendFeatured::class)
+            ->monthlyOn(1, '20:00')
+            ->when(function () {
+                return date('w', strtotime('first Tuesday of ' . date('F Y'))) === '2';
+            })
+            ->timezone('America/Mexico_City');
+
         $schedule->command(GiveCreditsToUsers::class, [
             '--credits' => 100,
-        ])->monthly()->tuesdays()->at('21:00');
+        ])->monthlyOn(1, '20:00')
+            ->when(function () {
+                return date('w', strtotime('first Tuesday of ' . date('F Y'))) === '2';
+            })
+            ->timezone('America/Mexico_City');
     }
 
     /**
