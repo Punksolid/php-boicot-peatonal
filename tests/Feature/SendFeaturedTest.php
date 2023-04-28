@@ -7,10 +7,16 @@ use App\Mail\FeaturedProspectOfTheMonth;
 use App\Models\Prospect;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Services\GetFeaturedProspectOfTheMonth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Mail;
+
+use OpenAI;
+use OpenAI\Contracts\Response;
 use Tests\TestCase;
+
+use OpenAI\Responses\Completions\CreateResponse;
 
 class SendFeaturedTest extends TestCase
 {
@@ -24,10 +30,35 @@ class SendFeaturedTest extends TestCase
      */
     public function test_send_email_when_executing_command()
     {
+        Mail::fake();
+
+        $featuredProspectOfTheMonth = $this->createPartialMock(FeaturedProspectOfTheMonth::class, ['getLetter', 'getTitle']);
+
+        $featuredProspectOfTheMonth
+            ->expects($this->any())
+            ->method('getLetter')
+            ->willReturn( 'Hola' );
+
+        $featuredProspectOfTheMonth
+            ->expects($this->any())
+            ->method('getTitle')
+            ->willReturn( 'mundo' );
+
+        // Create partial mock with constructor arguments
+        $sendFeatured = $this->createPartialMock(SendFeatured::class, ['getMailable']);
+        $sendFeatured->__construct($this->app->make(GetFeaturedProspectOfTheMonth::class));
+        $sendFeatured
+            ->expects($this->any())
+            ->method('getMailable')
+            ->willReturn($featuredProspectOfTheMonth);
+
+
+        $this->instance(FeaturedProspectOfTheMonth::class, $featuredProspectOfTheMonth);
+        $this->instance(SendFeatured::class, $sendFeatured);
+
         $subscriptor = Subscription::factory()->create();
         Prospect::factory()->create();
 
-        Mail::fake();
         Mail::assertNothingSent();
         Mail::assertNothingOutgoing();
         Mail::assertNothingQueued();

@@ -15,16 +15,18 @@ class FeaturedProspectOfTheMonth extends Mailable
     use Queueable, SerializesModels;
 
     public string $title;
+    private string $instructions;
+    private ?OpenAI $openAI;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(public $prospect, public $chatGptLetter = null)
+    public function __construct(public $prospect, public $chatGptLetter = null )
     {
         logger()->info('Enviando Email');
-        $instructions = <<<TEXT
+        $this->instructions = <<<TEXT
 Formula un email, que invite a la persona a ir a google maps o pagina en facebook y calificar con una estrella a la empresa {$this->prospect->name},
 El objetivo es desincentivar a los negocios que invaden el espacio público que es de todos.
 Firma la IA de BoicotPeatonal.ORG
@@ -32,23 +34,8 @@ Escribelo de forma amigable y hasta graciosa.Si puedes aprovecha para criticar a
 TEXT;
 
 
-        $responseContent = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
-            'messages' => [
-                ['role' => 'user', 'content' => $instructions],
-            ],
-        ]);
-
-        $responseTitle = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
-            'messages' => [
-                ['role' => 'user', 'content' => $instructions],
-                ['role' => 'user', 'content' => 'Escribe el titulo para el email'],
-            ],
-        ]);
-
-        $this->chatGptLetter = $responseContent->choices[0]->message->content;
-        $this->title = $responseTitle->choices[0]->message->content;
+        $this->chatGptLetter = $this->getLetter();
+        $this->title = $this->getTitle();
     }
 
     /**
@@ -59,7 +46,7 @@ TEXT;
     public function envelope()
     {
         return new Envelope(
-            subject: $this->title,
+            subject: $this->title?? null,
         );
     }
 
@@ -83,5 +70,33 @@ TEXT;
     public function attachments()
     {
         return [];
+    }
+
+    /**
+     * @return string
+     */
+    public function getLetter(): string
+    {
+        $responseContent = OpenAI::chat()->create([
+            'model' => 'gpt-3.5-turbo',
+            'messages' => [
+                ['role' => 'user', 'content' => $this->instructions],
+            ],
+        ]);
+
+        return $responseContent->choices[0]->message->content;
+    }
+
+    public function getTitle(): string
+    {
+        $responseTitle = OpenAI::chat()->create([
+            'model' => 'gpt-3.5-turbo',
+            'messages' => [
+                ['role' => 'user', 'content' => $this->instructions],
+                ['role' => 'user', 'content' => 'Escribe el titulo para el email'],
+            ],
+        ]);
+
+        return $responseTitle->choices[0]->message->content;
     }
 }

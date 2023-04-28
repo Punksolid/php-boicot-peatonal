@@ -55,9 +55,8 @@ TEXT;
         $emails = $this->getEmails();
         foreach ($emails as $email) {
             Log::info("Sending email to $email");
-            Mail::to($email)->send(new FeaturedProspectOfTheMonth($prospect));
+            Mail::to($email)->send($this->getMailable($prospect));
         }
-
         if (!$dontMarkAsFeatured) {
             $prospect->markFeatured();
         }
@@ -77,5 +76,14 @@ TEXT;
     private function selectFeatured(): Prospect
     {
         return $this->getFeaturedProspectOfTheMonth->__invoke();
+    }
+
+    /**
+     * @param \LaravelIdea\Helper\App\Models\_IH_Prospect_C|array|Prospect|null $prospect
+     * @return FeaturedProspectOfTheMonth
+     */
+    public function getMailable(\LaravelIdea\Helper\App\Models\_IH_Prospect_C|array|Prospect|null $prospect): FeaturedProspectOfTheMonth
+    {
+        return new FeaturedProspectOfTheMonth($prospect);
     }
 }
