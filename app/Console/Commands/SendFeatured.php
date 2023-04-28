@@ -78,11 +78,7 @@ TEXT;
         return $this->getFeaturedProspectOfTheMonth->__invoke();
     }
 
-    /**
-     * @param \LaravelIdea\Helper\App\Models\_IH_Prospect_C|array|Prospect|null $prospect
-     * @return FeaturedProspectOfTheMonth
-     */
-    public function getMailable(\LaravelIdea\Helper\App\Models\_IH_Prospect_C|array|Prospect|null $prospect): FeaturedProspectOfTheMonth
+    public function getMailable(Prospect $prospect): FeaturedProspectOfTheMonth
     {
         return new FeaturedProspectOfTheMonth($prospect);
     }
