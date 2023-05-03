@@ -38,13 +38,14 @@ class GetFeaturedProspectOfTheMonthTest extends TestCase
     /**
      *
      */
-    public function test_get_featured()
+    public function test_get_current_featured()
     {
         $prospects = Prospect::factory()->count(3)->create();
 
         $prospectFeatured = $prospects->first();
         $prospectFeatured->featured_at = now()->subDay();
         $prospectFeatured->save();
+
         $notFeatured = $prospects->last();
 
         /** @var User $user */
@@ -52,9 +53,10 @@ class GetFeaturedProspectOfTheMonthTest extends TestCase
         $user->voteOn($prospectFeatured,1+4+9+16+25+36+49+64+81);
         $user->voteOn($notFeatured,1+4+9+16+25+36+49+64+81+100);
 
-        $prospects = (new GetFeaturedProspectOfTheMonth())->__invoke();
 
-        $this->assertEquals($prospectFeatured->id, $prospects->id);
-        
+        $prospect = (new GetFeaturedProspectOfTheMonth())->getFeaturedProspectOfTheMonth();
+
+        $this->assertEquals($prospectFeatured->id, $prospect->id);
+
     }
 }

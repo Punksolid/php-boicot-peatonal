@@ -29,7 +29,7 @@ use MagicLink\MagicLink;
 // get all urls that start with 1 and redirect to the original url
 Route::get('/{slug}', (new UrlShortener())->redirect(...))->where('slug', '1[0-9A-Za-z]{5}');
 Route::get('/', function (GetFeaturedProspectOfTheMonth $getFeaturedProspectOfTheMonth) {
-    $prospect = $getFeaturedProspectOfTheMonth->__invoke();
+    $prospect = $getFeaturedProspectOfTheMonth->getFeaturedProspectOfTheMonth();
     return view('welcome')->with(['prospect' => $prospect]);
 });
 

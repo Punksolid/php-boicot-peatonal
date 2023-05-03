@@ -52,7 +52,7 @@ class GetFeaturedProspectOfTheMonth
         return $newMostVotedProspect;
     }
 
-    private function getFeaturedProspectOfTheMonth(): Prospect
+    public function getFeaturedProspectOfTheMonth(): Prospect
     {
         return Prospect::orderBy('featured_at', 'desc')->first();
     }
