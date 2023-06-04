@@ -27,10 +27,11 @@ class FeaturedProspectOfTheMonth extends Mailable
     {
         logger()->info('Enviando Email');
         $this->instructions = <<<TEXT
-Formula un email, que invite a la persona a ir a google maps o pagina en facebook y calificar con una estrella a la empresa {$this->prospect->name},
-El objetivo es desincentivar a los negocios que invaden el espacio público que es de todos.
+Crea un email, que invite a la persona a ir a google maps a calificar con una estrella a la empresa {$this->prospect->name},
+esa empresa no es socialmente responsable y no respeta el espacio público.
+Invita a el publico a decirle a sus amigos a que también califiquen negativo.
 Firma la IA de BoicotPeatonal.ORG
-Escribelo de forma amigable y hasta graciosa.Si puedes aprovecha para criticar a las autoridades.
+Escribelo de forma amigable y graciosa. Si puedes aprovecha para criticar a las autoridades.
 TEXT;
 
 

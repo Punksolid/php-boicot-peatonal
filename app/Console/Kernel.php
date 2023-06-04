@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\GiveCreditsToUsers;
 use App\Console\Commands\ResetCreditsToUsers;
 use App\Console\Commands\SendFeatured;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -18,26 +19,33 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $dayNumberFirstTuesdayOfTheMonth = now()->firstOfMonth();
+
+        while ($dayNumberFirstTuesdayOfTheMonth->dayOfWeek !== Carbon::TUESDAY) {
+            $dayNumberFirstTuesdayOfTheMonth->addDay();
+        }
+
         $schedule->command(SendFeatured::class)
-            ->monthlyOn(1, '20:00')
-            ->when(function () {
-                return date('w', strtotime('first Tuesday of ' . date('F Y'))) === '2';
+            ->monthly()
+            ->when(function () use ($dayNumberFirstTuesdayOfTheMonth) {
+                return now()->isSameDay($dayNumberFirstTuesdayOfTheMonth);
             })
             ->timezone('America/Mexico_City');
 
         $schedule->command(ResetCreditsToUsers::class)
-            ->monthlyOn(1, '18:00')
-            ->when(function () {
-                return date('w', strtotime('first Tuesday of ' . date('F Y'))) === '2';
+            ->monthly()
+            ->when(function () use ($dayNumberFirstTuesdayOfTheMonth) {
+                return now()->isSameDay($dayNumberFirstTuesdayOfTheMonth);
             })
             ->timezone('America/Mexico_City');
 
 
         $schedule->command(GiveCreditsToUsers::class, [
             '--credits' => 100,
-        ])->monthlyOn(1, '20:00')
-            ->when(function () {
-                return date('w', strtotime('first Tuesday of ' . date('F Y'))) === '2';
+        ])
+            ->monthly()
+            ->when(function () use ($dayNumberFirstTuesdayOfTheMonth) {
+                return now()->isSameDay($dayNumberFirstTuesdayOfTheMonth);
             })
             ->timezone('America/Mexico_City');
     }
