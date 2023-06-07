@@ -2,12 +2,14 @@
 
 namespace App\Mail;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use OpenAI\Exceptions\ErrorException;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class FeaturedProspectOfTheMonth extends Mailable
@@ -78,25 +80,36 @@ TEXT;
      */
     public function getLetter(): string
     {
-        $responseContent = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
-            'messages' => [
-                ['role' => 'user', 'content' => $this->instructions],
-            ],
-        ]);
+        try {
+            $responseContent = OpenAI::chat()->create([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'user', 'content' => $this->instructions],
+                ],
+            ]);
+        } catch (\Exception $exception) {
+            logger()->error($exception->getMessage());
+            return 'Entra al link y califica con 1 estrella';
+        }
 
         return $responseContent->choices[0]->message->content;
     }
 
     public function getTitle(): string
     {
-        $responseTitle = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
-            'messages' => [
-                ['role' => 'user', 'content' => $this->instructions],
-                ['role' => 'user', 'content' => 'Escribe el titulo para el email'],
-            ],
-        ]);
+        try {
+            $responseTitle = OpenAI::chat()->create([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'user', 'content' => $this->instructions],
+                    ['role' => 'user', 'content' => 'Escribe el titulo para el email'],
+                ],
+            ]);
+        } catch (Exception $exception) {
+            logger()->error($exception->getMessage());
+            return 'Ayuda a denunciar ' . $this->prospect->name;
+        }
+
 
         return $responseTitle->choices[0]->message->content;
     }

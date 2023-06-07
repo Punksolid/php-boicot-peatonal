@@ -13,10 +13,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Mail;
 
 use OpenAI;
-use OpenAI\Contracts\Response;
 use Tests\TestCase;
 
-use OpenAI\Responses\Completions\CreateResponse;
 
 class SendFeaturedTest extends TestCase
 {
@@ -77,5 +75,32 @@ class SendFeaturedTest extends TestCase
 
         $this->assertContains($subscriptor->email, $command->getEmails());
         $this->assertContains($register->email, $command->getEmails());
+    }
+
+    public function test_assert_an_already_denounced_local_is_not_sent_twice()
+    {
+        Mail::fake();
+
+        $prospect = Prospect::factory()->create();
+        $prospect2 = Prospect::factory()->create();
+        $user = User::factory()->create();
+        $user->giveVoteCredits(10000);
+        $user->voteOn($prospect, 1+4+9+16+25+36+49+64+81+100);
+        $user->voteOn($prospect2, 1+4+9+16+25+36+49+64+81);
+
+        $featuredProspectOfTheMonth = $this->createPartialMock(FeaturedProspectOfTheMonth::class, ['getLetter', 'getTitle']);
+
+        $this->instance(FeaturedProspectOfTheMonth::class, $featuredProspectOfTheMonth);
+        $this->artisan('prospects:send-featured');
+        Mail::assertSent(FeaturedProspectOfTheMonth::class, function ($mail) use ($prospect) {
+
+            return $mail->prospect->name === $prospect->name;
+        });
+
+        $this->artisan('prospects:send-featured');
+        Mail::assertSent(FeaturedProspectOfTheMonth::class, function ($mail2) use ($prospect2) {
+            return $mail2->prospect->name === $prospect2->name;
+        });
+
     }
 }

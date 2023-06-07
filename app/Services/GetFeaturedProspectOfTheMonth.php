@@ -12,7 +12,6 @@ class GetFeaturedProspectOfTheMonth
     public function __invoke(): ?Prospect
     {
         $getFeaturedProspectOfTheMonth = $this->getNewFeaturedProspectOfTheMonth();
-
         if (!$getFeaturedProspectOfTheMonth) {
             $newFeaturedProspect = $this->selectNewFeaturedProspect();
 
@@ -44,7 +43,9 @@ class GetFeaturedProspectOfTheMonth
 
     private function getNewFeaturedProspectOfTheMonth(): Prospect
     {
-        $newMostVotedProspect = Prospect::with('voters')
+        $newMostVotedProspect = Prospect::
+            notFeatured()
+            ->with('voters')
             ->withSum('voters', 'votes.quantity')
             ->orderByDesc('voters_sum_votesquantity')
             ->first();
