@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Mail\MagicLink;
+use App\Models\Subscription;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -24,5 +26,17 @@ class SubscriptionTest extends TestCase
         $this->assertDatabaseHas('subscriptions', [
             'email' => $safeEmail,
         ]);
+    }
+
+    public function test_a_subscriber_can_login()
+    {
+        \Mail::fake();
+        $subscriber = Subscription::factory()->create();
+
+        $this->post(route('login.magic'), [
+            'email' => $subscriber->email,
+        ]);
+
+        \Mail::assertSent(MagicLink::class, fn($mail) => $mail->hasTo($subscriber->email));
     }
 }

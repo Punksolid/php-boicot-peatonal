@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $name = BoicotPeatonalNameGenerator::generate('');
+        $name = BoicotPeatonalNameGenerator::generate();
         $user = User::create([
             'name' => $name,
             'email' => $request->email,

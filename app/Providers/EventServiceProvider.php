@@ -4,10 +4,11 @@ namespace App\Providers;
 
 use App\Events\ProspectStoreEvent;
 use App\Listeners\ProspectStore;
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -30,11 +31,10 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        //
+        User::observe(UserObserver::class);
     }
-
     /**
      * Determine if events and listeners should be automatically discovered.
      *

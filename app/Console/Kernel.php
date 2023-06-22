@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\GiveCreditsToUsers;
+use App\Console\Commands\ResetCreditsToUsers;
+use App\Console\Commands\SendFeatured;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,9 +19,35 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-//        first tuesday of every month at 8pm
-        $schedule->command('prospects:send-featured')->monthlyOn(2, '20:00');
+        $dayNumberFirstTuesdayOfTheMonth = now()->firstOfMonth();
+
+        while ($dayNumberFirstTuesdayOfTheMonth->dayOfWeek !== Carbon::TUESDAY) {
+            $dayNumberFirstTuesdayOfTheMonth->addDay();
+        }
+
+        $schedule->command(SendFeatured::class)
+            ->monthly()
+            ->when(function () use ($dayNumberFirstTuesdayOfTheMonth) {
+                return now()->isSameDay($dayNumberFirstTuesdayOfTheMonth);
+            })
+            ->timezone('America/Mexico_City');
+
+        $schedule->command(ResetCreditsToUsers::class)
+            ->monthly()
+            ->when(function () use ($dayNumberFirstTuesdayOfTheMonth) {
+                return now()->isSameDay($dayNumberFirstTuesdayOfTheMonth);
+            })
+            ->timezone('America/Mexico_City');
+
+
+        $schedule->command(GiveCreditsToUsers::class, [
+            '--credits' => 100,
+        ])
+            ->monthly()
+            ->when(function () use ($dayNumberFirstTuesdayOfTheMonth) {
+                return now()->isSameDay($dayNumberFirstTuesdayOfTheMonth);
+            })
+            ->timezone('America/Mexico_City');
     }
 
     /**

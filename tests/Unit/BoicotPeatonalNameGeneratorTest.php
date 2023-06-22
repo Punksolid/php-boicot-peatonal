@@ -12,7 +12,7 @@ class BoicotPeatonalNameGeneratorTest extends TestCase
      */
     public function testNameGenerator(): void
     {
-        $result = BoicotPeatonalNameGenerator::generate('');
+        $result = BoicotPeatonalNameGenerator::generate();
         $this->assertIsString($result);
     }
 }
